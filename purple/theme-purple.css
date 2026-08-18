@@ -1,0 +1,108 @@
+/* ===== 紫漸層主題(對應 DM 730186 / 整合精準行銷.png)— 覆蓋 style.css ===== */
+:root{
+  --bg:#1c0a3f;--bg2:#ffffff;--ink:#1c1a17;--ink2:#4a4640;--muted:#8a8378;
+  --gold:#ff5fa2;--gold2:#ffb340;--gold3:#ffe3ef;--dark:#120627;--line:#eadff5;
+  --shadow:0 12px 30px rgba(20,5,60,.25);--shadow2:0 28px 60px rgba(20,5,60,.45);
+  --purple:#3b1583;--purple2:#5c22b8;--pink:#ff5fa2;--orange:#ffb340;
+}
+body{background:radial-gradient(1200px 700px at 90% -10%,rgba(255,95,162,.25),transparent 60%),radial-gradient(900px 600px at -10% 40%,rgba(92,34,184,.6),transparent 60%),linear-gradient(180deg,#24104f,#180838 50%,#24104f);color:#f4efff}
+/* 一般段落文字在深底上轉白;卡片內維持深字 */
+.h2,.hero h1,.sub-hero h1{color:#fff}
+.lead,.hero .sub,.sub-hero .sub,.trust,.stats div span,.pj-note,.sub-hero .crumb{color:#d9cdf5}
+.eyebrow{color:var(--orange)}
+.eyebrow::before{background:linear-gradient(90deg,var(--pink),var(--orange))}
+.gold-text{background:linear-gradient(120deg,#ffb340,#ffd47a 50%,#ff5fa2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn-gold{background:linear-gradient(135deg,#ff5fa2,#ff8a3d);box-shadow:0 10px 24px rgba(255,95,162,.4)}
+.btn-gold:hover{box-shadow:0 16px 34px rgba(255,95,162,.55)}
+.btn-ghost{border-color:#fff;color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--purple)}
+.trust b{color:var(--orange)}
+header{background:rgba(24,8,56,.85);border-bottom-color:rgba(255,255,255,.08)}
+.nav ul{color:#fff}
+.nav ul a:hover{border-color:var(--pink);color:var(--pink)}
+.burger span{background:#fff}
+.nav ul.open{background:#1c0a3f}
+.hero::before{background:none}
+.hero .kv img{transform:rotate(-1.5deg);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.hero .kv::after{border-color:var(--pink)}
+/* 痛點段:更深紫 */
+.pain{background:var(--dark)}
+.pain::before{background:radial-gradient(700px 400px at 90% 10%,rgba(255,95,162,.18),transparent 60%)}
+.pain-card{border-color:rgba(255,95,162,.35);background:rgba(255,255,255,.04)}
+.pain-card:hover{background:rgba(255,95,162,.12)}
+.pain-card .n{color:var(--orange)}
+.pain-foot{color:var(--orange)}
+/* 白底區塊改成紫底 */
+section[style*="background:#fff"]{background:linear-gradient(180deg,#2b1360,#22104d)!important}
+/* 服務卡 */
+.svc{background:#fff}
+.svc .bg::after{background:linear-gradient(160deg,rgba(59,21,131,.92),rgba(255,95,162,.85))}
+.svc .ic{background:linear-gradient(135deg,#5c22b8,#ff5fa2)}
+.svc .ic svg{stroke:#fff}
+.svc:hover .ic{background:#fff}
+.svc:hover .ic svg{stroke:#5c22b8}
+.svc h3 span{border-color:var(--pink)}
+.svc li::before{color:var(--pink)}
+.svc .more-link{color:var(--pink)}
+.svc:hover li::before{color:var(--orange)}
+.flow::before{background:linear-gradient(90deg,#ffe3ef,#ff5fa2,#ffb340,#ffe3ef)}
+.flow .dot{background:linear-gradient(135deg,#ff5fa2,#ff8a3d);box-shadow:0 8px 18px rgba(255,95,162,.4)}
+/* 整合段 */
+.integ li{border-left-color:var(--pink)}
+.integ .badge{background:var(--gold3);color:#c2185b}
+.quote{background:linear-gradient(135deg,#120627,#3b1583)}
+.quote::before{color:rgba(255,95,162,.25)}
+.quote small{color:var(--orange)}
+/* 案例 */
+.filters button{color:#5c22b8;background:#fff}
+.filters button:hover{background:#f3ebff;border-color:rgba(92,34,184,.4)}
+.filters button.on{background:linear-gradient(135deg,#ff5fa2,#ff8a3d);color:#fff;box-shadow:0 10px 24px rgba(255,95,162,.4)}
+.pj h3{color:#fff}
+.pj .desc{color:#d9cdf5}
+.pj .cat{color:var(--orange)}
+.pj .cat::before{background:var(--orange)}
+.pj .more{color:var(--pink)}
+.chips span{background:rgba(255,255,255,.14);color:#fff}
+.svc .chips span,.step .chips span,.ind .chips span{background:#f3ebff;color:#5c22b8}
+/* 方案 */
+.plan{border-top-color:#f3ebff}
+.plan.hot{border-top-color:var(--pink);background:linear-gradient(180deg,#fff7fb,#fff)}
+.plan .lbl{background:linear-gradient(135deg,#ff5fa2,#ff8a3d)}
+.plan li::before,.plan .fit b{color:var(--pink)}
+.price-bar{background:linear-gradient(135deg,#120627,#3b1583)}
+.price-bar p{color:#d9cdf5}
+.price-bar .big em{color:var(--orange);-webkit-text-fill-color:initial;background:none}
+/* FAQ */
+.faq summary::after{color:var(--pink)}
+/* 表單 */
+.lead-sec{background:linear-gradient(135deg,#3b1583,#1c0a3f 70%)}
+.lead-box{border-color:rgba(255,255,255,.15)}
+.lead-box .info{background:linear-gradient(160deg,#120627,#2b1360)}
+.lead-box .info p,.lead-box .info ol{color:#d9cdf5}
+.lead-box .info .note{color:var(--orange);border-top-color:rgba(255,95,162,.35)}
+.lead-box input:focus,.lead-box select:focus,.lead-box textarea:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,95,162,.18)}
+.chk label:has(input:checked){border-color:var(--pink);background:var(--gold3);color:#c2185b}
+.chk input{accent-color:var(--pink)}
+.mbar{background:#1c0a3f;border-top-color:rgba(255,255,255,.1)}
+.mbar .tel{background:#f3ebff;color:#5c22b8}
+.mbar .form{background:linear-gradient(135deg,#ff5fa2,#ff8a3d)}
+footer{background:#0f0521;color:#b9a9dc}
+footer .slogan{color:var(--orange)}
+/* 分頁 */
+.sub-hero{background:linear-gradient(135deg,#3b1583,#1c0a3f 60%);border-bottom-color:rgba(255,255,255,.08)}
+.owner .av{background:linear-gradient(135deg,#ff5fa2,#ff8a3d)}
+.stats div b{color:var(--orange)}
+.step{border-left-color:#f3ebff}
+.step:hover{border-left-color:var(--pink)}
+.step .no{color:var(--pink)}
+table.res th{background:#120627;color:var(--orange)}
+table.res .pf{background:#f3ebff;color:#5c22b8}
+table.res tr:hover td{background:#fbf7ff}
+.todo{border-color:var(--pink);background:#fff7fb;color:#c2185b}
+.other-svc a{color:var(--ink)}
+.other-svc a:hover{background:#f3ebff}
+/* 白底容器內文字回深色 */
+.svc,.plan,.step,.faq details,.lead-box form,.owner,.ind,.integ li,.other-svc a,.flow,.tbl-wrap,.filters button{color:var(--ink)}
+.svc h3,.plan h3,.step h3,.faq summary,.owner b,.ind b,.integ li b,.flow h4{color:var(--ink)}
+.svc li,.plan ul,.step p,.faq details p,.owner p,.integ li p{color:var(--ink2)}
+.svc:hover h3,.svc:hover li,.svc:hover .who{color:#fff}

@@ -330,3 +330,8 @@ table.res .pf{display:inline-block;font-size:12px;padding:3px 8px;border-radius:
 .owner .av.photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 @media (max-width:1024px){.vd-grid3,.vd-hl{grid-template-columns:1fr 1fr}.vd-wall{grid-template-columns:repeat(3,1fr)}.vd-logos{grid-template-columns:repeat(4,1fr)}.vd-formula{grid-template-columns:1fr}}
 @media (max-width:640px){.vd-grid3,.vd-hl{grid-template-columns:1fr}.vd-wall{grid-template-columns:repeat(2,1fr)}.vd-logos{grid-template-columns:repeat(3,1fr)}}
+
+/* 導連:服務卡整張可點、流程/整合段內文連結 */
+.svc{display:block;cursor:pointer}
+.flow p a,.integ li p a{border-bottom:1px solid currentColor;padding-bottom:1px}
+.flow p a:hover,.integ li p a:hover{color:var(--gold)}

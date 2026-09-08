@@ -154,25 +154,25 @@ ads_results = [
     ('Google', '綜合型', '2022~2023|保健食品', '$3,600,000', '純 Ads 轉換 ROAS 2.5,實際轉換 ROAS 約 3~3.5'),
 ]
 ads_inds = [
-    ('看護長照', '順心 / 恆愛 / 優善 / 晴美 / 仁安 / 力威 / 久伴 / 長安', ['Google Ads', 'SEO', '網站設計']),
-    ('室內設計', '萬寶隆空間設計', ['Facebook Ads', 'Google Ads']),
-    ('餐飲食品', '全國麗園 尋鮮坊', ['Facebook Ads', 'Google Ads']),
-    ('餐飲飯店', '全國麗園', ['電商通路運營', 'Google Ads']),
-    ('餐飲聯盟平台', 'JTK 揪攤集', ['Facebook Ads']),
-    ('裂變行銷系統', 'Mecango LINE CRM 系統', ['Facebook Ads']),
-    ('運動時尚', 'Avant-Golf 雅凡高爾夫', ['短影音', 'Facebook Ads']),
-    ('個人 IP 行銷', '郁婷房仲', ['Facebook Ads']),
-    ('健身產業', '麋鹿健身', ['Facebook Ads']),
-    ('交友服務', '圈出新戀情 / 心跳配對 MatchUp', ['Facebook Ads']),
-    ('電商零售', '財神小舖', ['Facebook Ads', 'Google Ads']),
-    ('電商零售', 'KUDONG 酷凍', ['Facebook Ads', 'Google Ads']),
-    ('電商零售', '三劍客歐陸嚴選', ['Facebook Ads']),
-    ('金融貸款', '玥鋒理財', ['Google Ads']),
-    ('太陽能儲能', '築能太陽能', ['Google Ads', 'SEO']),
-    ('音樂工作室', '悉尼音樂工作室', ['Facebook Ads']),
-    ('網紅經紀', '55GO', ['Facebook Ads']),
-    ('人力仲介', '中豪人力仲介', ['SEO', '網站設計']),
-    ('室內設計', '品家設計', ['網站設計', 'SEO']),
+    ('看護長照', '8 家看護派遣業者(北中南)', ['Google Ads', 'SEO', '網站設計']),
+    ('室內設計', '台南空間設計公司', ['Facebook Ads', 'Google Ads']),
+    ('餐飲食品', '飯店集團自有食品品牌', ['Facebook Ads', 'Google Ads']),
+    ('餐飲飯店', '南部飯店集團', ['電商通路運營', 'Google Ads']),
+    ('餐飲聯盟平台', '餐飲揪團平台', ['Facebook Ads']),
+    ('裂變行銷系統', 'LINE CRM 系統商', ['Facebook Ads']),
+    ('運動時尚', '高爾夫服飾品牌', ['短影音', 'Facebook Ads']),
+    ('個人 IP 行銷', '房仲業務個人品牌', ['Facebook Ads']),
+    ('健身產業', '健身房', ['Facebook Ads']),
+    ('交友服務', '兩家交友聯誼平台', ['Facebook Ads']),
+    ('電商零售', '宗教用品電商', ['Facebook Ads', 'Google Ads']),
+    ('電商零售', '冷凍食品電商', ['Facebook Ads', 'Google Ads']),
+    ('電商零售', '歐陸食品電商', ['Facebook Ads']),
+    ('金融貸款', '貸款理財顧問', ['Google Ads']),
+    ('太陽能儲能', '太陽能儲能業者', ['Google Ads', 'SEO']),
+    ('音樂工作室', '音樂教學工作室', ['Facebook Ads']),
+    ('網紅經紀', '網紅經紀公司', ['Facebook Ads']),
+    ('人力仲介', '外籍人力仲介', ['SEO', '網站設計']),
+    ('室內設計', '高雄室內設計公司', ['網站設計', 'SEO']),
 ]
 def res_table(rows):
     tr = ''
@@ -209,7 +209,7 @@ page('web', '網站建置', '雅芬', 'WEBSITE',
          ('上線與維護', '含首年 1–2 次微調換圖;後台權限、購物車、多語系等模組可另外加購。', ['維護', '模組加購']),
      ],
      '<p class="lead">已交付的網站與電商作品。</p>' + ind_grid([
-         ('行李箱品牌', 'Lucky Lucky / M Case', ['品牌官網', '電商']),
+         ('行李箱品牌', '行李箱雙品牌官網+電商', ['品牌官網', '電商']),
          ('餐飲', '(案例待補)', ['一頁式']),
          ('形象網站', '(案例待補)', ['企業形象', '後台']),
          ('平台轉型', '(案例待補)', ['既有平台優化']),
@@ -231,7 +231,7 @@ page('crm', 'LINE 會員系統', '可芳', 'CRM',
      '<p class="lead">已建置的 LINE 會員系統案例。</p>' + ind_grid([
          ('連鎖門市', '(案例待補)', ['會員分級', '集點']),
          ('美業', '(案例待補)', ['預約', '優惠券']),
-         ('教育', '三代同行(追蹤中)', ['學員點數']),
+         ('教育', '教育機構(追蹤中)', ['學員點數']),
          ('補助案', '(案例待補)', ['韌性計畫']),
      ]),
      ('待可芳補件', '系統後台/LINE 畫面截圖、客戶名稱、方案級別、可公開數據(會員數/回購率/優惠券核銷率)。'))
@@ -249,7 +249,7 @@ page('visual', '視覺設計', '豐澤', 'VISUAL',
          ('維護與換圖', '首年 1–2 次微調或換圖服務。', ['維護']),
      ],
      '<p class="lead">品牌識別與包裝作品。</p>' + ind_grid([
-         ('運動用品', '歐米斯 Omis 高爾夫', ['包裝設計', '國際市場']),
+         ('運動用品', '高爾夫用品品牌', ['包裝設計', '國際市場']),
          ('美業', '新創美業品牌 識別重設定', ['Logo', '社群圖文']),
          ('餐飲', '(案例待補)', ['檔期 DM']),
          ('連鎖品牌', '(案例待補)', ['全店視覺']),
@@ -309,34 +309,30 @@ video_steps = [
 video_hl = [
     ('手機維修達人', '12 支破百萬流量', ['每月變現 +80%', 'IG 總流量破 3,500 萬']),
     ('琉球達人', '成功轉型,民宿電話接不停', ['IG 總流量破 800 萬']),
-    ('描雲刺青', '14 支破 50 萬流量', ['描雲膏產品商模開發', 'IG 總流量破 4,000 萬']),
+    ('刺青工作室', '14 支破 50 萬流量', ['自有商品商模開發', 'IG 總流量破 4,000 萬']),
 ]
 video_wall = [
     ('v04b', '年關將至,各位小心年獸'), ('v08', '逛好市多的秘密:標籤暗號大全'), ('v09', 'AirPods 還有這麼多功能'), ('v03', '肉整盤煮?退冰涮才嫩口'), ('v07b', '去日本退稅必看:2026 最新規定'),
-    ('v01', 'MEAT 燒肉餐酒館|Meat 既是肉,也是一份想念'), ('v02', '大統百貨正式拆除,高雄人的共同回憶'), ('v04a', '鯊魚夾的妙用,出門夾也不奇怪'), ('v05', '全台最早土地公,求財拜法公開'), ('v07a', '代購價格怎麼算?趁日幣低賺回來'),
+    ('v02', '大統百貨正式拆除,高雄人的共同回憶'), ('v04a', '鯊魚夾的妙用,出門夾也不奇怪'), ('v05', '全台最早土地公,求財拜法公開'), ('v07a', '代購價格怎麼算?趁日幣低賺回來'), ('v06', '各種風格寫真,男人也能改造'),
 ]
-video_logos = [
-    ('logo-cheng', '鄭光峰市議員'), ('logo-wedar', '台灣保健 WEDAR'), ('logo-chen', '陳雅婷老師'), ('logo-meg', "I'M MEG"),
-    ('logo-yungching', '永慶不動產'), ('logo-benz', 'Mercedes-Benz'), ('logo-zyl', 'ZYL 極界新材科技'), ('logo-meat', 'MEAT 燒肉餐酒館'),
-    ('logo-wendu', '溫肚火鍋'), ('logo-skk', 'SKK 酵素 300'), ('logo-kingfong', '金豐集團'),
-]
-video_ips = ['溫肚火鍋', '客製西服', '老牌客製化蛋糕', '手機通訊行', '小孩吃素', '一杯廣東粥', '美業課程', '坐看雲氣時', '遠東銀行', '瑞德汽車', '賓士汽車', '旗袍寫真館']
+video_inds = ['市議員形象', '保健食品品牌', '美甲教育講師', '個人品牌經營者', '連鎖不動產', '德系豪華車', '新材料科技', '燒肉餐酒館', '火鍋店', '酵素保健品', '集團企業']
+video_ips = ['火鍋店', '客製西服', '老牌客製化蛋糕', '手機通訊行', '素食親子', '廣東粥', '美業課程', '生活風格 IP', '銀行', '汽車經銷', '豪華車品牌', '旗袍寫真館']
 
 video_cases = f'''<p class="lead">代表顧客的流量與變現成績,一個帳號一個數字。</p>
 <div class="vd-hl">{''.join(f'<div class="reveal"><small>{H.escape(n)}</small><b>{H.escape(h)}</b>{chips(c)}</div>' for n, h, c in video_hl)}</div>
 <h3 style="font-size:24px;margin-top:56px">作品牆</h3>
 <p class="lead">觀看數直接印在畫面上,不用我們多說。</p>
 <div class="vd-wall">{''.join(f'<figure class="reveal"><span class="ph"><img src="{VD}/{k}.webp" alt="{H.escape(t)}" loading="lazy"></span><figcaption>{H.escape(t)}</figcaption></figure>' for k, t in video_wall)}</div>
-<h3 style="font-size:24px;margin-top:56px">代表 IP 與合作品牌</h3>
-<div class="vd-logos">{''.join(f'<div class="reveal" title="{H.escape(n)}"><img src="{VD}/{k}.webp" alt="{H.escape(n)}" loading="lazy"></div>' for k, n in video_logos)}</div>
-<div class="chips vd-ips">{''.join(f'<span>{H.escape(x)}</span>' for x in video_ips)}</div>
+<h3 style="font-size:24px;margin-top:56px">合作產業與代表 IP</h3>
+<p class="lead">從市議員到豪華車品牌,從火鍋店到旗袍寫真館——同一套方法,不同的行業。</p>
+<div class="chips vd-ips">{''.join(f'<span>{H.escape(x)}</span>' for x in video_inds + video_ips)}</div>
 <h3 style="font-size:24px;margin-top:56px">團隊聯名案例</h3>
 <p class="lead">短影音與廣告投放同步啟動的案子。</p>
 {ind_grid([
-    ('房仲個人 IP', '郁婷房仲', ['120 萬觀看', '1,000 留言', '5–6% 轉化']),
+    ('房仲個人 IP', '房仲業務個人品牌', ['120 萬觀看', '1,000 留言', '5–6% 轉化']),
     ('健康器材', '遠紅外線陶瓷溫熱器', ['短影音']),
     ('保健食品', '酵素總代理', ['短影音', '廣告素材']),
-    ('運動時尚', 'Avant-Golf 雅凡高爾夫', ['短影音', 'Facebook Ads']),
+    ('運動時尚', '高爾夫服飾品牌', ['短影音', 'Facebook Ads']),
 ])}'''
 
 def vd_plan(name, per, total, n, fit, pace, hot=False, lbl=None):

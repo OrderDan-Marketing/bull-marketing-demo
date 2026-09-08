@@ -106,3 +106,16 @@ table.res tr:hover td{background:#fbf7ff}
 .svc h3,.plan h3,.step h3,.faq summary,.owner b,.ind b,.integ li b,.flow h4{color:var(--ink)}
 .svc li,.plan ul,.step p,.faq details p,.owner p,.integ li p{color:var(--ink2)}
 .svc:hover h3,.svc:hover li,.svc:hover .who{color:#fff}
+
+/* 短影音分頁擴充(David) */
+.vd-card,.vd-logos>div{color:var(--ink)}
+.vd-card h3{color:var(--ink)}
+.vd-card ul,.vd-card p{color:var(--ink2)}
+.vd-card li::before{background:var(--pink)}
+.vd-card a,.vd-card .fit b{color:#5c22b8}
+.vd-card .chips span{background:#f3ebff;color:#5c22b8}
+.vd-hl>div{background:linear-gradient(135deg,#120627,#3b1583)}
+.vd-hl small{color:var(--orange)}
+.vd-price{color:#c2185b}
+.vd-plans-note{color:#d9cdf5}
+.vd-wall figure{box-shadow:0 12px 30px rgba(0,0,0,.4)}

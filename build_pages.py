@@ -58,8 +58,11 @@ def other_links(key):
     return '<div class="other-svc">' + ''.join(
         f'<a href="{k}.html">{n}<span>→</span></a>' for k, n, _, _ in ALL if k != key) + '</div>'
 
-def page(key, name, owner, tag, hero_sub, owner_desc, stats, steps, cases_html, todo=None):
+def page(key, name, owner, tag, hero_sub, owner_desc, stats, steps, cases_html, todo=None,
+         owner_img=None, after_hero='', extra_html=''):
     stats_html = ''.join(f'<div><b>{H.escape(v)}</b><span>{H.escape(l)}</span></div>' for v, l in stats)
+    av_html = (f'<div class="av photo"><img src="{owner_img}" alt="{H.escape(owner)}"></div>' if owner_img
+               else f'<div class="av">{owner[0]}</div>')
     doc = f'''<!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
@@ -88,13 +91,13 @@ def page(key, name, owner, tag, hero_sub, owner_desc, stats, steps, cases_html, 
         <div class="stats">{stats_html}</div>
       </div>
       <div class="owner reveal">
-        <div class="av">{owner[0]}</div>
+        {av_html}
         <div><b>{owner}</b><small>{tag} LEAD</small><p>{owner_desc}</p></div>
       </div>
     </div>
   </div>
 </section>
-
+{after_hero}
 <section id="process">
   <div class="wrap">
     <div class="eyebrow">01|Service Process</div>
@@ -112,7 +115,7 @@ def page(key, name, owner, tag, hero_sub, owner_desc, stats, steps, cases_html, 
     {('<div class="todo"><b>' + todo[0] + '</b>' + todo[1] + '</div>') if todo else ''}
   </div>
 </section>
-
+{extra_html}
 <section>
   <div class="wrap">
     <div class="eyebrow">Integrate</div>
@@ -251,22 +254,137 @@ page('visual', '視覺設計', '豐澤', 'VISUAL',
      ]),
      ('待豐澤補件', '作品圖(Logo/包裝/社群圖各 1–2 張)、客戶名稱、設計品項標籤。'))
 
-# ================= VIDEO (David) =================
+# ================= VIDEO (David) — 內容來源:projects\BNI行銷產業鏈\David\牛排行銷-David.pdf(2026-09-09) =================
+VD = 'assets/david'
+
+def vd_cards(items):  # (title, who, [li html...])
+    return '<div class="vd-grid3">' + ''.join(
+        f'<div class="vd-card reveal"><h3>{H.escape(t)}</h3><div class="who">{H.escape(w)}</div><ul>'
+        + ''.join(f'<li>{x}</li>' for x in lis) + '</ul></div>' for t, w, lis in items) + '</div>'
+
+def vd_aud(items):  # (title, goal, [chips])
+    return '<div class="vd-grid3">' + ''.join(
+        f'<div class="vd-card reveal"><h3>{H.escape(t)}</h3><div class="who">{H.escape(g)}</div>{chips(c)}</div>'
+        for t, g, c in items) + '</div>'
+
+video_after_hero = f'''
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2">我們的服務</h2>
+    <p class="lead">短影音製作、課程包班、帳號矩陣——從一支影片到一整套影音行銷。</p>
+    {vd_cards([
+        ('短影音製作', 'IG / TikTok / Shorts', ['IG、TikTok 短影音製作(初階 / 進階)', '個人、公司 IP 打造', '短影音品牌商品廣告', '企業形象影片', '藏鏡人真人拍攝+AI 口播複製人']),
+        ('課程與包班', '把方法留在你公司', ['企業短影音行銷包班', '明星課程', '商品形象拍攝課程', '動態影像課程', '3V 商業變現學院 公益課程']),
+        ('品牌網路行銷', '帳號從 0 到矩陣', ['短影音帳號建置', '圖文 AI 矩陣行銷', 'KOL 合作', '廣告投放 → <a href="ads.html">丹丹|廣告投放</a>', '會員系統 → <a href="crm.html">可芳|LINE 會員</a>']),
+    ])}
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <div class="eyebrow">Who It's For</div>
+    <h2 class="h2">如果,你想打造個人 IP+影音曝光</h2>
+    <p class="lead">三種目標,三種拍法——先確定你要的是知名度、曝光,還是業績。</p>
+    {vd_aud([
+        ('業務銷售', '目標:提升知名度', ['房仲', '店長', '理財投資顧問', '直銷高階主管', '企業管理顧問', '連鎖店企業總部', '中古車商', '融資貸款', '醫美整型業']),
+        ('個人執業', '目標:行銷曝光', ['美容師', '美髮師', '刺青師', '營養師', '塔羅師', '中醫師', '商標律師', '行銷講師', '室內設計師']),
+        ('零售電商', '目標:增加業績', ['保健食品業', '通訊業店家', '3C 維修商家', '美妝電商', '食品電商', '韓國代購商', '母嬰用品電商', '寵物用品電商']),
+    ])}
+  </div>
+</section>
+'''
+
+video_steps = [
+    ('IP 設定', '卡內基價值卡測驗、曼陀羅 IP 定位分析、訪談式人物分析總結——先確定你是誰、要對誰說話。', ['2~5 天', 'IP 定位']),
+    ('企劃', '拍攝主體規劃、腳本及文案擬定、確認專案成本與拍攝時間。', ['3~4 週', '腳本文案']),
+    ('拍攝', '器材架設、行前溝通、拍攝進行、確認檔案及收音;單趟拍攝 8 支以上。', ['依方案', '單趟 8 支+']),
+    ('編製', '影片剪輯、確認檔案及收音;真人拍攝或 AI 口播複製人皆可產出,高層不願露臉也能 24 小時曝光。', ['10 天', '剪輯', 'AI 分身']),
+    ('文案', '標題封面、文字配樂、風向長尾關鍵字,確稿發佈。', ['2 天', '標題封面']),
+    ('優化', '關鍵數字指標、數據分析、頻道優化;有觀看沒詢問就換下一支,素材同步交給廣告端投放。', ['2 天', '數據優化']),
+]
+
+video_hl = [
+    ('手機維修達人', '12 支破百萬流量', ['每月變現 +80%', 'IG 總流量破 3,500 萬']),
+    ('琉球達人', '成功轉型,民宿電話接不停', ['IG 總流量破 800 萬']),
+    ('描雲刺青', '14 支破 50 萬流量', ['描雲膏產品商模開發', 'IG 總流量破 4,000 萬']),
+]
+video_wall = [
+    ('v04b', '年關將至,各位小心年獸'), ('v08', '逛好市多的秘密:標籤暗號大全'), ('v09', 'AirPods 還有這麼多功能'), ('v03', '肉整盤煮?退冰涮才嫩口'), ('v07b', '去日本退稅必看:2026 最新規定'),
+    ('v01', 'MEAT 燒肉餐酒館|Meat 既是肉,也是一份想念'), ('v02', '大統百貨正式拆除,高雄人的共同回憶'), ('v04a', '鯊魚夾的妙用,出門夾也不奇怪'), ('v05', '全台最早土地公,求財拜法公開'), ('v07a', '代購價格怎麼算?趁日幣低賺回來'),
+]
+video_logos = [
+    ('logo-cheng', '鄭光峰市議員'), ('logo-wedar', '台灣保健 WEDAR'), ('logo-chen', '陳雅婷老師'), ('logo-meg', "I'M MEG"),
+    ('logo-yungching', '永慶不動產'), ('logo-benz', 'Mercedes-Benz'), ('logo-zyl', 'ZYL 極界新材科技'), ('logo-meat', 'MEAT 燒肉餐酒館'),
+    ('logo-wendu', '溫肚火鍋'), ('logo-skk', 'SKK 酵素 300'), ('logo-kingfong', '金豐集團'),
+]
+video_ips = ['溫肚火鍋', '客製西服', '老牌客製化蛋糕', '手機通訊行', '小孩吃素', '一杯廣東粥', '美業課程', '坐看雲氣時', '遠東銀行', '瑞德汽車', '賓士汽車', '旗袍寫真館']
+
+video_cases = f'''<p class="lead">代表顧客的流量與變現成績,一個帳號一個數字。</p>
+<div class="vd-hl">{''.join(f'<div class="reveal"><small>{H.escape(n)}</small><b>{H.escape(h)}</b>{chips(c)}</div>' for n, h, c in video_hl)}</div>
+<h3 style="font-size:24px;margin-top:56px">作品牆</h3>
+<p class="lead">觀看數直接印在畫面上,不用我們多說。</p>
+<div class="vd-wall">{''.join(f'<figure class="reveal"><span class="ph"><img src="{VD}/{k}.webp" alt="{H.escape(t)}" loading="lazy"></span><figcaption>{H.escape(t)}</figcaption></figure>' for k, t in video_wall)}</div>
+<h3 style="font-size:24px;margin-top:56px">代表 IP 與合作品牌</h3>
+<div class="vd-logos">{''.join(f'<div class="reveal" title="{H.escape(n)}"><img src="{VD}/{k}.webp" alt="{H.escape(n)}" loading="lazy"></div>' for k, n in video_logos)}</div>
+<div class="chips vd-ips">{''.join(f'<span>{H.escape(x)}</span>' for x in video_ips)}</div>
+<h3 style="font-size:24px;margin-top:56px">團隊聯名案例</h3>
+<p class="lead">短影音與廣告投放同步啟動的案子。</p>
+{ind_grid([
+    ('房仲個人 IP', '郁婷房仲', ['120 萬觀看', '1,000 留言', '5–6% 轉化']),
+    ('健康器材', '遠紅外線陶瓷溫熱器', ['短影音']),
+    ('保健食品', '酵素總代理', ['短影音', '廣告素材']),
+    ('運動時尚', 'Avant-Golf 雅凡高爾夫', ['短影音', 'Facebook Ads']),
+])}'''
+
+def vd_plan(name, per, total, n, fit, pace, hot=False, lbl=None):
+    return (f'<div class="plan{" hot" if hot else ""} reveal">' + (f'<span class="lbl">{lbl}</span>' if lbl else '')
+            + f'<h3>{H.escape(name)}</h3><div class="who">{H.escape(pace)}</div>'
+            + f'<div class="vd-price">{per}<small> 元/部</small></div><div class="who">{total} 元/套組</div>'
+            + f'<ul><li>{n}</li><li>帳號教學</li><li>行銷策略建構</li></ul>'
+            + f'<div class="fit"><b>適合</b> {H.escape(fit)}</div></div>')
+
+video_extra = f'''
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Why Short Video</div>
+    <h2 class="h2">為什麼那麼多人都在拍短影音?</h2>
+    <p class="lead">還記得下班滑 FB、看 YouTuber 的年代嗎?現在觀眾要的是「快速」、「有趣」、「不用動腦」。</p>
+    <div class="vd-formula">
+      <div class="quote reveal"><p>成交 = 信任感 × 曝光度<br>業績 = 流量 × 轉換率 × 客單價 × 回購率</p><small>完全行銷:先讓人喜歡你,再談成交</small></div>
+      <div class="vd-card reveal"><h3>流量的底層邏輯</h3><p>來客數不是運氣,是這幾個數字堆出來的。</p>{chips(['完播率', '留言數', '粉絲數', '私領域', '演算法', '內容價值', '觀看數', '專業 & 泛流量'])}</div>
+    </div>
+    <div class="vd-grid3" style="margin-top:22px">
+      <div class="vd-card reveal"><h3>菜單式 vs 試吃式</h3><p>菜單式讓人選擇障礙;試吃式讓人選擇快速、符合觀眾口味。短影音就是試吃式——先讓人嚐一口。</p></div>
+      <div class="vd-card reveal"><h3>公域 × 私域</h3><p>我們深知社群平台操作差異:公域拿流量,私域留人;短影音導進來的人,交給 <a href="crm.html">LINE 會員系統</a> 留住。</p></div>
+      <div class="vd-card reveal"><h3>AI 複製人系統</h3><p>檔期滿、不想露臉,也能靠 AI 口播複製人維持週更;真人與 AI 混拍,產量與真實感兼顧。</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <div class="eyebrow">Plans</div>
+    <h2 class="h2">短影音專案方案</h2>
+    <p class="lead">走團隊 A / B / C 包套時,短影音支數依 <a href="index.html#plans" style="text-decoration:underline">總覽方案</a> 配置;以下是單獨委託短影音的參考方案。</p>
+    <div class="plans">
+      {vd_plan('職人好口碑方案', '5,500', '110,000', '20 支短影音企劃', '初創、初步商模建置', '每週 2 支|3 個月')}
+      {vd_plan('職人超值方案(季)', '4,800', '144,000', '30 支短影音企劃', '決定改變!加快累積粉絲', '每週 2 支|4~5 個月')}
+      {vd_plan('半年約超值方案', '4,400', '308,000', '70 支短影音企劃', '年度預算,價值最大化', '每週 2 支|9~12 個月', hot=True, lbl='最划算')}
+    </div>
+    <div class="vd-plans-note">三方案皆含:平台帳號教學 / 協助(時間、內文編輯、標題應用、封面設計)、職業與服務內容腳本。單趟拍攝 8 支以上;車程超過三民區一小時,交通費另計。</div>
+    <div class="vd-grid3" style="margin-top:30px">
+      <div class="vd-card reveal"><h3>顧問陪跑專案</h3><div class="who">保證產出 30 支獲客短影音</div><ul><li>量身定戰略、高效獲客路徑、快速見察變現</li><li>腳本策劃、拍攝指導、後期剪輯</li><li>數據分析、成效優化、全程陪跑</li></ul><div class="fit" style="margin-top:16px;font-size:15px"><b>費用</b> 依專案需求討論</div></div>
+      <div class="vd-card reveal"><h3>3V 商業變現學院</h3><div class="who">短影音變現、超級業務力 公益課程</div><ul><li>IP 定位 → 流量 → 成交 → 變現</li><li>3 位講師傳授實戰心法</li><li>公益課程價 990 元;扣除場地與製作費後全數捐給公益團體</li></ul></div>
+      <div class="vd-card reveal"><h3>企業包班 / 課程</h3><div class="who">把拍攝與剪輯能力留在公司</div><ul><li>企業短影音行銷包班</li><li>商品形象拍攝課程、動態影像課程</li><li>明星課程、個人 IP 打造</li></ul></div>
+    </div>
+  </div>
+</section>
+'''
+
 page('video', '短影音', 'David', 'VIDEO',
-     '每週 1 支的固定節奏,搭配 AI 口播分身與真人拍攝;影片同時是廣告素材,不孤軍奮戰——有觀看沒詢問就換下一支。',
-     'AI 短影音與線上課程。藏鏡人短影音+AI 口播複製人、AI 虛擬分身訓練、線上課程錄製與上架;開幕前中後三階段陪跑。',
-     [('4 支/月', '固定產出'), ('60 支', '演算法臨界點'), ('3 單元', '線上課程方案')],
-     [
-         ('定位與受眾節奏', '先定觀眾是誰、在意什麼;40 歲以上受眾節奏放慢、字幕吸收率優先,避免防禦心理。', ['受眾', '節奏']),
-         ('鉤子與腳本', 'AI 輔助文案發想:好奇心開場、資訊不對稱誘發留言;每幕精簡不推銷。', ['鉤子', 'AI 文案']),
-         ('拍攝與 AI 分身', '藏鏡人真人拍攝+AI 口播複製人;高層不願露臉或檔期滿,用數位分身 24 小時曝光。', ['真人拍攝', 'AI 分身']),
-         ('週更與素材陪跑', '每週 1 支、每月 4 支;開幕前/中/後三階段素材,同步交給廣告端投放。', ['週更', '三階段']),
-         ('留言自動化與名單', 'ManyChat / 內部系統自動回覆大量留言,導流表單收預算與意向,轉化率 5–6%。', ['自動回覆', '名單表單']),
-     ],
-     '<p class="lead">短影音與線上課程作品。</p>' + ind_grid([
-         ('房仲個人 IP', '郁婷房仲', ['120 萬觀看', '1,000 留言', '5–6% 轉化']),
-         ('健康器材', '遠紅外線陶瓷溫熱器', ['短影音']),
-         ('保健食品', '酵素總代理', ['短影音', '廣告素材']),
-         ('線上課程', '(案例待補)', ['3 單元錄製']),
-     ]),
-     ('待 David 補件', '影片連結或封面截圖、客戶名稱、觀看/留言/詢問數(可公開者)。'))
+     '影音行銷的專家,用影像打造你的 IP 價值。IG / TikTok 短影音製作、個人與企業 IP 打造、藏鏡人拍攝+AI 口播分身;每週固定產出,影片同時是廣告素材,有觀看沒詢問就換下一支。',
+     '《影音行銷的專家,用影像打造你的 IP 價值》。IG / TikTok 短影音製作、企業短影音行銷包班、個人與公司 IP 打造;真人藏鏡人拍攝+AI 口播複製人,開幕前中後三階段陪跑。',
+     [('4,000 萬+', '單一客戶 IG 累積流量'), ('12 支', '單一客戶破百萬流量影片'), ('30 支', '顧問陪跑保證產出')],
+     video_steps, video_cases,
+     owner_img='assets/david.webp', after_hero=video_after_hero, extra_html=video_extra)

@@ -366,3 +366,13 @@ table.res .pf{display:inline-block;font-size:12px;padding:3px 8px;border-radius:
 .trust{gap:16px;margin-top:40px}
 .trust span{gap:12px;padding:14px 22px;border-radius:14px;background:rgba(255,255,255,.55);border:1px solid rgba(184,150,63,.35);box-shadow:var(--shadow);font-size:16px;font-weight:600;color:var(--ink)}
 .trust b{font-family:"Noto Serif TC",serif;font-size:38px;line-height:1;font-weight:800}
+
+/* 視覺設計分頁:作品集頁 */
+.vd-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:36px}
+.vd-gallery figure{margin:0;background:#fff;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;transition:.3s}
+.vd-gallery figure:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}
+.vd-gallery img{width:100%;height:auto;display:block}
+.vd-gallery figcaption{padding:16px 20px 18px}
+.vd-gallery figcaption b{display:block;font-size:18px;color:var(--ink)}
+.vd-gallery figcaption span{display:block;font-size:14.5px;color:var(--ink2);margin-top:4px}
+@media (max-width:640px){.vd-gallery{grid-template-columns:1fr}}

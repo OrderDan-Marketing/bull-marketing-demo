@@ -7,12 +7,19 @@ NAV = '''<header>
   <div class="wrap nav">
     <a class="logo" href="index.html"><img src="assets/logo.webp" alt="牛排行銷 BULL MARKETING"></a>
     <ul id="menu">
-      <li><a href="index.html#services">五大服務</a></li>
-      <li><a href="web.html">網站</a></li>
-      <li><a href="crm.html">LINE 會員</a></li>
-      <li><a href="visual.html">視覺</a></li>
-      <li><a href="video.html">短影音</a></li>
-      <li><a href="ads.html">廣告</a></li>
+      <li class="has-sub"><a href="index.html#services">五大服務</a>
+        <ul class="sub">
+          <li><a href="web.html">網站建置|雅芬</a></li>
+          <li><a href="crm.html">LINE 會員系統|可芳</a></li>
+          <li><a href="visual.html">視覺設計|豐澤</a></li>
+          <li><a href="video.html">短影音|David</a></li>
+          <li><a href="ads.html">廣告投放|丹丹</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#integration">整合方式</a></li>
+      <li><a href="index.html#projects">實際案例</a></li>
+      <li><a href="index.html#plans">方案</a></li>
+      <li><a href="index.html#faq">常見問題</a></li>
     </ul>
     <a class="btn btn-gold" href="#contact">預約免費診斷</a>
     <button class="burger" aria-label="選單" onclick="document.getElementById('menu').classList.toggle('open')"><span></span><span></span><span></span></button>

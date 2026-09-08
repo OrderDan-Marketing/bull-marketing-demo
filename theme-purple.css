@@ -119,3 +119,10 @@ table.res tr:hover td{background:#fbf7ff}
 .vd-price{color:#c2185b}
 .vd-plans-note{color:#d9cdf5}
 .vd-wall figure{box-shadow:0 12px 30px rgba(0,0,0,.4)}
+
+/* header 浮現選單 */
+.nav .sub{color:var(--ink)}
+.nav .sub a{color:var(--ink)}
+.nav .sub a:hover{background:#f3ebff;color:#5c22b8}
+.nav ul.open .sub a{color:#fff}
+.nav ul.open .sub a:hover{background:transparent;color:var(--pink)}

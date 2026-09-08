@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Generate the 5 service sub-pages from data. Run: python build_pages.py"""
+"""Generate the 5 service sub-pages from data. Run: python build_pages.py
+(2026-09-09 起只剩紫版:頁面同時載入 style.css + theme-purple.css,purple/ 僅留轉址殘檔)"""
 import html as H
 
 NAV = '''<header>
@@ -73,6 +74,7 @@ def page(key, name, owner, tag, hero_sub, owner_desc, stats, steps, cases_html, 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="theme-purple.css">
 </head>
 <body>
 {NAV}
@@ -192,7 +194,7 @@ page('ads', '廣告投放', '丹丹', 'ADS',
      '會寫追蹤代碼的廣告投手。行銷背景出身,從追蹤埋設、廣告投放到 AI 自動化優化,一站式整合——追蹤沒埋好,所有優化都是瞎猜。',
      '簡單廣告營銷 Founder。Google / Meta 雙平台代操(15% 服務費,90% 流程自動化),廣告帳戶健檢,異常監測系統自動通報。',
      [('1,000萬+', '年度管理廣告預算 (NTD)'), ('1億+', '累計協助客戶營收 (NTD)'), ('20+', '跨產業客戶')],
-     ads_steps, ads_cases)
+     ads_steps, ads_cases, owner_img='assets/dandan.webp')
 
 # ================= WEB (雅芬) =================
 page('web', '網站建置', '雅芬', 'WEBSITE',

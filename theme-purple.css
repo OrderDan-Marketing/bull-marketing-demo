@@ -126,3 +126,7 @@ table.res tr:hover td{background:#fbf7ff}
 .nav .sub a:hover{background:#f3ebff;color:#5c22b8}
 .nav ul.open .sub a{color:#fff}
 .nav ul.open .sub a:hover{background:transparent;color:var(--pink)}
+
+/* hero 三數據 */
+.trust span{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#fff;backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.trust b{background:linear-gradient(120deg,#ffb340,#ff5fa2);-webkit-background-clip:text;background-clip:text;color:transparent}

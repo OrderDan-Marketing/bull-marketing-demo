@@ -361,3 +361,8 @@ table.res .pf{display:inline-block;font-size:12px;padding:3px 8px;border-radius:
   .nav li.has-sub>a::after{content:""}
 }
 @media (max-width:640px){.owner .av.photo{width:140px;height:140px}}
+
+/* hero 三數據:玻璃卡強調 */
+.trust{gap:16px;margin-top:40px}
+.trust span{gap:12px;padding:14px 22px;border-radius:14px;background:rgba(255,255,255,.55);border:1px solid rgba(184,150,63,.35);box-shadow:var(--shadow);font-size:16px;font-weight:600;color:var(--ink)}
+.trust b{font-family:"Noto Serif TC",serif;font-size:38px;line-height:1;font-weight:800}

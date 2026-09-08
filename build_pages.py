@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Generate the 5 service sub-pages from data. Run: python build_pages.py
 (2026-09-09 起只剩紫版:頁面同時載入 style.css + theme-purple.css,purple/ 僅留轉址殘檔)"""
-import html as H
+import html as H, os, time
+CSS_V = time.strftime('%Y%m%d%H%M')  # 每次重產都換版本號,避免 GitHub Pages/瀏覽器快取舊 CSS
 
 NAV = '''<header>
   <div class="wrap nav">
@@ -80,8 +81,8 @@ def page(key, name, owner, tag, hero_sub, owner_desc, stats, steps, cases_html, 
 <meta name="description" content="牛排行銷 {name} 服務流程與實際案例。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="theme-purple.css">
+<link rel="stylesheet" href="style.css?v={CSS_V}">
+<link rel="stylesheet" href="theme-purple.css?v={CSS_V}">
 </head>
 <body>
 {NAV}

@@ -63,6 +63,16 @@ def steps_html(steps):
         out.append(f'''<div class="step reveal"><div class="no">{i:02d}</div><div><h3>{H.escape(t)}</h3><p>{H.escape(d)}</p>{chips(tags) if tags else ''}</div></div>''')
     return '<div class="steps">' + ''.join(out) + '</div>'
 
+def vd_cards(items):  # (title, who, [li html...]) 三欄卡(video/visual/web 共用)
+    return '<div class="vd-grid3">' + ''.join(
+        f'<div class="vd-card reveal"><h3>{H.escape(t)}</h3><div class="who">{H.escape(w)}</div><ul>'
+        + ''.join(f'<li>{x}</li>' for x in lis) + '</ul></div>' for t, w, lis in items) + '</div>'
+
+def vd_aud(items):  # (title, goal, [chips])
+    return '<div class="vd-grid3">' + ''.join(
+        f'<div class="vd-card reveal"><h3>{H.escape(t)}</h3><div class="who">{H.escape(g)}</div>{chips(c)}</div>'
+        for t, g, c in items) + '</div>'
+
 def other_links(key):
     return '<div class="other-svc">' + ''.join(
         f'<a href="{k}.html">{n}<span>→</span></a>' for k, n, _, _ in ALL if k != key) + '</div>'
@@ -194,25 +204,150 @@ page('ads', '廣告投放', '丹丹', 'ADS',
      [('1,000萬+', '年度管理廣告預算 (NTD)'), ('1億+', '累計協助客戶營收 (NTD)'), ('20+', '跨產業客戶')],
      ads_steps, ads_cases, owner_img='assets/dandan.webp')
 
-# ================= WEB (雅芬) =================
+# ================= WEB (雅芬) — 內容來源:projects\BNI行銷產業鏈\雅芬\(富瑞分會 10 分鐘簡報 pptx 逐字稿 pptx_text.md + 網站設計作品集.txt + 人像,2026-09-09) =================
+YF = 'assets/yafen'
+
+def note_grid(items):  # (label, title, desc, [chips]) → 4 欄卡:小標籤/粗標題/內文/標籤
+    return '<div class="ind-grid">' + ''.join(
+        f'<div class="ind reveal"><small>{H.escape(l)}</small><b>{H.escape(t)}</b><p>{H.escape(d)}</p>{chips(c) if c else ""}</div>'
+        for l, t, d, c in items) + '</div>'
+
+web_after_hero = f'''
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2">核心服務</h2>
+    <p class="lead">從零建站、舊站升級到搜尋排名——不只做出網站,更要做出能被找到、被信任、帶來詢問的品牌主場。</p>
+    {vd_cards([
+        ('新網站建置', 'NEW WEBSITE', ['從零開始,打造符合品牌調性的專業網站', '一頁式銷售網 / 企業形象官網 / 電商(購物車、金流)', '文案架構、RWD 版型、基礎 SEO 一次到位', '品牌色與版型與 <a href="visual.html">視覺設計</a> 同步']),
+        ('舊站升級維護', 'UPGRADE & MAINTAIN', ['優化手機體驗、提升速度,全面升級網站表現', '既有平台導入視覺、突破系統限制', '表單、系統串接,接進 <a href="crm.html">LINE 會員系統</a>', '首年微調換圖,長期維護有人接']),
+        ('SEO 優化', 'SEO', ['定期更新內容,提升品牌活力與搜尋排名', '被搜尋到、提高詢問與成交', '預埋 GA / GTM,<a href="ads.html">廣告投放</a>追得到每一筆轉換', '從成交開始規劃,用數據持續優化']),
+    ])}
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <div class="eyebrow">Pain Point</div>
+    <h2 class="h2">社群平台只是「租來的入口」</h2>
+    <p class="lead">觸及、規則、帳號權限,都由平台決定。</p>
+    {note_grid([
+        ('01', '觸及率不穩定', '辛苦發文,粉絲不一定看得到。', None),
+        ('02', '平台規則說變就變', '流量不穩,成本可能提高。', None),
+        ('03', '帳號可能被限制', '被檢舉、誤判,都可能影響營運。', None),
+        ('04', '社群是租的,官網是自己的', '別把唯一入口交給別人!', None),
+    ])}
+    <div class="vd-hl" style="grid-template-columns:1fr;margin-top:22px"><div class="reveal"><small>官網 × 社群 分工</small><b>「社群負責曝光,官網負責承接信任與詢問!」</b><p style="color:rgba(255,255,255,.8);font-size:15px">廣告與短影音把人帶進來,官網把信任與詢問接住——這也是五段服務裡網站排在基礎建設的原因。</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Brand Asset</div>
+    <h2 class="h2">打造品牌資產,掌控成長未來</h2>
+    <p class="lead">有官網的品牌 vs 僅依賴社群的品牌。</p>
+    <div class="web-vs">
+      <div class="vd-card reveal"><h3>有官網的品牌</h3><div class="who">BRAND ASSET</div><ul><li><b>營收穩定</b>:建立自有流量,持續成長</li><li><b>掌握會員名單</b>:累積客戶資產,精準經營</li><li>內容、SEO、名單都累積在自己的網域</li></ul></div>
+      <div class="vs reveal">VS</div>
+      <div class="vd-card bad reveal"><h3>僅依賴社群</h3><div class="who">RISK</div><ul><li><b>無預警停權</b>:平台規則變動,帳號隨時消失</li><li><b>客戶瞬間歸零</b>:所有客戶流量,一夕歸零</li><li>觸及、規則、權限都在別人手上</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <div class="eyebrow">Why Me</div>
+    <h2 class="h2">為什麼選擇雅芬?</h2>
+    <p class="lead">從你的經營痛點出發,打造真正有用的網站。</p>
+    {note_grid([
+        ('01', '從成交開始規劃', '依照客戶需求與消費流程,打造能帶來詢問的網站。', ['消費流程', '詢問']),
+        ('02', '用數據持續優化', '追蹤訪客行為與網站成效,讓每次調整都有依據。', ['GA', '成效追蹤']),
+        ('03', '把流量帶回自己的主場', '擺脫只靠社群的風險,累積品牌自己的客戶與內容。', ['自有流量', '內容資產']),
+        ('04', '懂設計,更懂你的生意', '從設計與業務顧問角度,協助釐清問題、提升成交機會。', ['設計', '業務顧問']),
+    ])}
+  </div>
+</section>
+'''
+
+web_sites = [   # 網站設計作品集.txt:不同產業的成交型官網範本(可以修改)
+    ('site01', '形象官網設計', '一頁式形象官網', 'https://onepage01.senxuorii.com/'),
+    ('site02', '企業官網', '一頁式企業官網', 'https://onepage02.senxuorii.com/'),
+    ('site04', '餐飲品牌官網', '一頁式餐飲品牌', 'https://onepage04.senxuorii.com/'),
+    ('site05', '宮廟網站設計', '一頁式宮廟官網', 'https://onepage05.senxuorii.com/'),
+    ('site06', '工程網站設計', '一頁式工程公司', 'https://onepage06.senxuorii.com/'),
+    ('site07', '空間設計官網', '品牌型多頁官網', 'https://brandedwebsite02.senxuorii.com/'),
+]
+web_cases = f'''<p class="lead">不同產業的成交型官網範本——每一套都能直接改成你的官網。點開看桌機與手機版。</p>
+<div class="web-gallery">{''.join(f'<a class="reveal" href="{u}" target="_blank" rel="noopener"><div class="shot"><img class="d" src="{YF}/{k}-d.webp" alt="{H.escape(t)} 桌機版" loading="lazy"><img class="m" src="{YF}/{k}-m.webp" alt="{H.escape(t)} 手機版" loading="lazy"></div><div class="cap"><div><b>{H.escape(t)}</b><span>{H.escape(d)}</span></div><i>開啟範本 ↗</i></div></a>' for k, t, d, u in web_sites)}</div>
+<h3 style="font-size:24px;margin-top:56px">已交付作品</h3>
+<p class="lead">客戶一律以產業描述呈現。</p>
+{vd_aud([
+    ('醫美診所', '多頁官網+活動頁', ['12 項服務選單', '活動價目頁', '海外服務專區']),
+    ('手作蛋糕・花藝', 'IG 官方帳號 自動回覆選單', ['客製訂購', '作品集', '創業課程']),
+    ('行李箱品牌', '雙品牌官網+電商', ['品牌官網', '電商', '一頁式']),
+])}'''
+
+web_extra = f'''
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Online × Offline</div>
+    <h2 class="h2">線上與線下的視覺延伸與落地</h2>
+    <p class="lead">網站、社群、印刷、包裝,讓視覺一致延伸到每個接觸點;印刷與包裝由 <a href="visual.html" style="text-decoration:underline">豐澤的視覺設計</a> 接手,同一套視覺 100% 延伸。</p>
+    {note_grid([
+        ('線上', '一站式服務', '省時省力:官網與社群視覺同一個窗口。', ['官網', '社群視覺']),
+        ('線上 → 線下', '視覺延伸', '應用更一致:印刷物、包裝、菜單同一套。', ['印刷物', '包裝', '菜單']),
+        ('協作', '減少溝通成本', '專注核心業務,不用在多個廠商之間傳話。', ['單一窗口']),
+        ('落地', '設計有效落地', '提升整體質感,線上線下每個接觸點一致。', ['線上', '線下']),
+    ])}
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <div class="eyebrow">AI Website Builder</div>
+    <h2 class="h2">AI 10 秒架站?做得快 ≠ 做得對</h2>
+    <p class="lead">AI 能快速產出,但不代表方向正確、流程完整。</p>
+    <div class="vd-grid3">
+      <div class="vd-card reveal"><h3>定位是否正確</h3><p>產出容易,判斷困難。</p></div>
+      <div class="vd-card reveal"><h3>流程是否完整</h3><p>能夠上線,不等於能成交。</p></div>
+      <div class="vd-card reveal"><h3>維護是否容易</h3><p>單次修改容易,長期維護仍需規劃。</p></div>
+    </div>
+    <div class="web-vs">
+      <div class="vd-card bad reveal"><h3>自己用 AI 建站的盲點</h3><div class="who">DIY</div><ul><li>套版快速,品牌卻容易千篇一律</li><li>只有畫面,缺少 SEO 與轉換策略</li><li>功能串接、資安與法規容易踩雷</li><li>上線之後,測試維護都要自己來</li><li>上傳公司機密,資料去向難掌握</li></ul><div class="fit">看似省下建站費,卻可能錯失客戶與商機</div></div>
+      <div class="vs reveal">VS</div>
+      <div class="vd-card reveal"><h3>什麼情況該找專業做</h3><div class="who">PRO</div><ul><li>需要品牌形象與高信任感</li><li>需要被搜尋到、提高詢問與成交</li><li>需要特殊功能、表單或系統串接</li><li>沒時間自己反覆測試與長期維護</li></ul><div class="fit"><b>建議交給專業</b> 品牌型、成長型、商業導向網站</div></div>
+    </div>
+    <div class="vd-hl" style="grid-template-columns:1fr;margin-top:22px"><div class="reveal"><small>AI 與專業的分工</small><b>「AI 是效率工具,專業的價值在於判斷、整合與長期維護。」</b></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Take Action</div>
+    <h2 class="h2">立即行動</h2>
+    <p class="lead">別再觀望,現在就為品牌建立自己的數位總部。</p>
+    {steps_html([
+        ('評估現況', '有無官網?效能如何?是否過度依賴社群?', ['現況盤點']),
+        ('免費諮詢', '分析現況、找出問題,提供適合的解決方案。', ['免費診斷']),
+        ('開始行動', '不要再等,風險每天都在累積。', ['上線']),
+    ])}
+    <p class="lead" style="margin-top:26px">現在開始,讓官網成為你的品牌資產。 <a class="btn btn-gold" href="#contact" style="margin-left:10px">預約免費診斷 →</a></p>
+  </div>
+</section>
+'''
+
 page('web', '網站建置', '雅芬', 'WEBSITE',
-     '一頁式銷售網、企業形象官網到完整電商——網站是漏斗最前端的基礎建設,品牌定調後必須先有網站,後續投廣告才有意義。',
-     '網頁開發與電商建設。一頁式(A)/品牌網含 CMS(B)/完整電商含金流(C);協助既有平台導入視覺並優化系統限制。',
-     [('3', '種網站方案'), ('1.5–8 萬', '價格帶'), ('3 次', '修改次數上限')],
+     '社群風暴來襲,官網才是你的品牌主場。社群負責曝光,官網負責承接信任與詢問——一頁式銷售網、企業形象官網到完整電商,網站是五段服務的基礎建設,有了它,廣告與短影音導進來的人才有地方落腳。',
+     '森序 Orii 設計所 創辦人,設計產業年資約 9 年。新網站建置 / 舊站升級維護 / SEO 優化;從成交開始規劃、用數據持續優化,懂設計,更懂你的生意。',
+     [('約 9 年', '設計產業年資'), ('1.5–8 萬', '網站方案價格帶'), ('6 種', '產業官網範本')],
      [
-         ('需求對焦與方案選型', '一頁式(純單頁上下滾動、錨點導覽)、企業形象(4–5 頁,可加後台)或電商(購物車/金流)——先依目標與預算選對型,不做多餘的頁。', ['一頁式', '企業形象', '電商']),
-         ('文案與架構(面談一)', '第一次面談定文案:首頁/產品特色/客戶見證/常見問題/立即購買 8 段落規劃,文字先過再進設計。', ['8 段落', '文案定稿']),
+         ('需求對焦與方案選型', '一頁式(純單頁上下滾動、錨點導覽)、企業形象(4–5 頁,可加後台)或電商(購物車/金流)——依目標與預算選對型,不做多餘的頁。', ['一頁式', '企業形象', '電商']),
+         ('文案與架構(面談一)', '第一次面談定文案:首頁/產品特色/客戶見證/常見問題/立即購買 8 段落規劃,文字定稿再進設計。', ['8 段落', '文案定稿']),
          ('視覺設計與版型(面談二)', '套用品牌色與版型(與視覺設計同步),AI 輔助素材降低工時,「量化大於完美」快速上線。', ['RWD', 'AI 輔助設計']),
          ('基礎 SEO 與追蹤埋設', '基礎 SEO 設定、首年網域;搭配廣告時預埋 GA / GTM,讓後段投放能追到每一筆轉換。', ['SEO', 'GA / GTM']),
          ('上線與維護', '含首年 1–2 次微調換圖;後台權限、購物車、多語系等模組可另外加購。', ['維護', '模組加購']),
      ],
-     '<p class="lead">已交付的網站與電商作品。</p>' + ind_grid([
-         ('行李箱品牌', '行李箱雙品牌官網+電商', ['品牌官網', '電商']),
-         ('餐飲', '(案例待補)', ['一頁式']),
-         ('形象網站', '(案例待補)', ['企業形象', '後台']),
-         ('平台轉型', '(案例待補)', ['既有平台優化']),
-     ]),
-     ('待雅芬補件', '作品截圖(桌機+手機)、客戶名稱、方案類型、可公開的成效(上線後流量/詢問數)。每案一組:圖 1 張 + 一句話 + 3 個標籤。'))
+     web_cases, owner_img='assets/yafen.webp', after_hero=web_after_hero, extra_html=web_extra)
 
 # ================= CRM (可芳) =================
 page('crm', 'LINE 會員系統', '可芳', 'CRM',
@@ -236,16 +371,6 @@ page('crm', 'LINE 會員系統', '可芳', 'CRM',
 
 # ================= VIDEO (David) — 內容來源:projects\BNI行銷產業鏈\David\牛排行銷-David.pdf(2026-09-09) =================
 VD = 'assets/david'
-
-def vd_cards(items):  # (title, who, [li html...])
-    return '<div class="vd-grid3">' + ''.join(
-        f'<div class="vd-card reveal"><h3>{H.escape(t)}</h3><div class="who">{H.escape(w)}</div><ul>'
-        + ''.join(f'<li>{x}</li>' for x in lis) + '</ul></div>' for t, w, lis in items) + '</div>'
-
-def vd_aud(items):  # (title, goal, [chips])
-    return '<div class="vd-grid3">' + ''.join(
-        f'<div class="vd-card reveal"><h3>{H.escape(t)}</h3><div class="who">{H.escape(g)}</div>{chips(c)}</div>'
-        for t, g, c in items) + '</div>'
 
 video_after_hero = f'''
 <section>

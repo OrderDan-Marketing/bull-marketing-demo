@@ -376,3 +376,22 @@ table.res .pf{display:inline-block;font-size:12px;padding:3px 8px;border-radius:
 .vd-gallery figcaption b{display:block;font-size:18px;color:var(--ink)}
 .vd-gallery figcaption span{display:block;font-size:14.5px;color:var(--ink2);margin-top:4px}
 @media (max-width:640px){.vd-gallery{grid-template-columns:1fr}}
+
+/* 網站建置分頁:範本站截圖格(桌機截圖+手機截圖疊角) */
+.web-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
+.web-gallery a{display:block;background:#fff;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;transition:.3s;color:inherit;border-bottom:0}
+.web-gallery a:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}
+.web-gallery .shot{position:relative;aspect-ratio:16/10;background:#eee;overflow:hidden}
+.web-gallery .shot .d{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.web-gallery .shot .m{position:absolute;right:12px;bottom:-6px;width:24%;border-radius:12px 12px 0 0;box-shadow:0 8px 24px rgba(0,0,0,.35);border:3px solid #111;border-bottom:0;display:block}
+.web-gallery .cap{padding:16px 20px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.web-gallery .cap b{display:block;font-size:18px;color:var(--ink)}
+.web-gallery .cap span{display:block;font-size:14px;color:var(--ink2);margin-top:3px}
+.web-gallery .cap i{font-style:normal;flex:none;font-size:13px;font-weight:700;color:var(--gold);border:1px solid currentColor;border-radius:999px;padding:5px 12px;white-space:nowrap}
+.ind p{font-size:14.5px;color:var(--ink2);margin-top:6px;line-height:1.6}
+.web-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin-top:36px}
+.web-vs .vs{align-self:center;font-family:"Noto Serif TC",serif;font-size:28px;font-weight:800;color:var(--gold)}
+.web-vs .vd-card.bad{background:#f6f4fa;box-shadow:none;border:1px dashed var(--line)}
+.web-vs .vd-card.bad li::before{background:#b7b0c8}
+@media (max-width:1024px){.web-gallery{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.web-gallery{grid-template-columns:1fr}.web-vs{grid-template-columns:1fr}.web-vs .vs{justify-self:center}}

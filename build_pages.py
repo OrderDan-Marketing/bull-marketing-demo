@@ -404,6 +404,16 @@ crm_hl = [
 ]
 crm_cases = f'''<p class="lead">已上線客戶的後台數字——會員數、核銷率、預約量、營業額,一個客戶一個數字。客戶一律以產業描述呈現。</p>
 <div class="vd-hl">{''.join(f'<div class="reveal"><small>{H.escape(n)}</small><b>{H.escape(h)}</b>{chips(c)}</div>' for n, h, c in crm_hl)}</div>
+<h3 style="font-size:24px;margin-top:56px">後台實績截圖</h3>
+<p class="lead">系統後台與 LINE 畫面直接看;客戶名稱與個資一律遮蔽。</p>
+<div class="vd-gallery">{''.join(f'<figure class="reveal"><img src="assets/kefang/{k}.webp" alt="{H.escape(t)}" loading="lazy"><figcaption><b>{H.escape(t)}</b><span>{H.escape(d)}</span></figcaption></figure>' for k, t, d in [
+    ('crm-revenue', '精品咖啡|月訂單總額', '2025-04 上線,次月起連續 13 個月 151 萬~209 萬'),
+    ('crm-coupons', '台式牛排餐飲|兌換優惠券後台', '會員數 40,809;現金券品項、數量、已兌換數,核銷率 98%'),
+    ('crm-menu', '精品咖啡|LINE 圖文選單', '會員資訊、服務資訊、營業據點、推薦分享'),
+    ('crm-gifts', '珠寶零售|入會六大好禮', 'VIP 現金回饋會員的入會誘因設計'),
+    ('crm-bookings', '采耳美業|預約列表', '1,242 筆預約;項目、指派技師、分鐘數'),
+    ('crm-calc', '財富設計師|退休金互動試算', 'LINE 微網頁互動工具,填完自動貼標'),
+])}</div>
 <h3 style="font-size:24px;margin-top:56px">銷售前・中・後,實際怎麼設定</h3>
 <p class="lead">同一套三階段,不同產業的誘因與任務長這樣。</p>
 {vd_cards([
@@ -472,11 +482,10 @@ page('crm', 'LINE 會員系統', '可芳', 'CRM',
          ('現況盤點與分級選型', '入門(資料收集)/進階(會員等級)/總店 POS 整合版——依門市數與經營方式選型,綁一年合約所以第一步就選對。', ['入門', '進階', 'POS 整合']),
          ('會員池建置與自動貼標', '會員管理、表單問卷、微網頁;網站表單直接進 LINE 自動貼標,後續才能分眾。', ['自動貼標', '微網頁', '表單']),
          ('三階段裂變上線', '銷售前誘因(加好友送券)、銷售中任務(滿額升級 VIP、抽獎)、銷售後推薦(每邀 3 人送積分);優惠券、點數、生日禮自動發放。', ['優惠券', '點數', '裂變']),
-         ('補助申請(可選)', '協助具企劃之企業申請韌性計畫:專案 20 萬政府最高補助 10 萬,需通過 3 個月流量與系統使用審計。', ['韌性計畫', '50% 匹配']),
+         ('系統整合', 'POS、訂位、預約、購物車、派工、開課平台接進同一個會員池;網站表單、廣告名單同步進 LINE。', ['POS', '預約', '購物車']),
          ('數據分析與分眾優化', '會員行為分析標籤、消費數據分析、自動化分眾問卷,回饋給廣告端做再行銷。', ['分眾', '再行銷']),
      ],
      crm_cases,
-     ('待可芳確認', '案例是否可露出客戶品牌名與後台截圖(目前一律以產業描述);方案分級與補助條件是否照現行。'),
      owner_img='assets/kefang.webp', after_hero=crm_after_hero, extra_html=crm_extra)
 
 # ================= VIDEO (David) — 內容來源:projects\BNI行銷產業鏈\David\牛排行銷-David.pdf(2026-09-09) =================

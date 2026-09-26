@@ -94,7 +94,7 @@ def page(key, name, owner, tag, hero_sub, owner_desc, stats, steps, cases_html, 
 <link rel="stylesheet" href="style.css?v={CSS_V}">
 <link rel="stylesheet" href="theme-purple.css?v={CSS_V}">
 </head>
-<body>
+<body class="page-{key}">
 {NAV}
 <section class="sub-hero" id="top">
   <div class="wrap">
@@ -307,7 +307,7 @@ web_extra = f'''
     <div class="eyebrow">AI Website Builder</div>
     <h2 class="h2">AI 10 秒架站?做得快 ≠ 做得對</h2>
     <p class="lead">AI 能快速產出,但不代表方向正確、流程完整。</p>
-    <div class="vd-grid3">
+    <div class="vd-grid3 q3">
       <div class="vd-card reveal"><h3>定位是否正確</h3><p>產出容易,判斷困難。</p></div>
       <div class="vd-card reveal"><h3>流程是否完整</h3><p>能夠上線,不等於能成交。</p></div>
       <div class="vd-card reveal"><h3>維護是否容易</h3><p>單次修改容易,長期維護仍需規劃。</p></div>

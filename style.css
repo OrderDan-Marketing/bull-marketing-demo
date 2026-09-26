@@ -397,12 +397,14 @@ table.res .pf{display:inline-block;font-size:12px;padding:3px 8px;border-radius:
 @media (max-width:640px){.web-gallery{grid-template-columns:1fr}.web-vs{grid-template-columns:1fr}.web-vs .vs{justify-self:center}}
 
 
-/* ══ web.html 密度調整 v2(Dan 2026-09-26:手機版視覺核可後,同一套去白卡視覺套到桌機)══
+
+/* ══ web.html 密度調整 v3(Dan 2026-09-26)══
+   v1 手機去白卡條列 → v2 同套視覺延伸到桌機 → v3 平板(641–1023px)由單欄改兩欄,避免右半邊閒置。
    ①淺底段(原 style="background:#fff")改淡紫底深字,與深底段交替;
-   ②「標題+一句」清單(.ind)全尺寸去白卡:左側色條+編號+粗標+一句;桌機 4 欄、手機/平板單欄加分隔線;
-   ③步驟(.step)桌機改半透明框+左側色條、6 欄格(5 步=3+2、3 步=一列);手機/平板單欄條列;
-   ④內容型卡(.vd-grid3,含 AI 三問 .q3)全尺寸合併成一塊半透明面板:桌機直向分隔線、手機橫向分隔線;
-   ⑤VS 對比(.web-vs)合成一塊分割面板,VS 圓標在中線;
+   ②「標題+一句」清單(.ind)去白卡:左側色條+編號+粗標+一句;桌機 4 欄、平板 2 欄、手機單欄加分隔線;
+   ③步驟(.step):桌機/平板半透明框+左側色條(桌機 6 欄格 5 步=3+2、平板 2 欄末單數項撐滿);手機單欄條列;
+   ④內容型卡(.vd-grid3,含 AI 三問 .q3)合併成一塊半透明面板:桌機 3 欄直向分隔線、平板 2 欄第三張撐滿(.q3 維持 3 欄)、手機單欄橫向分隔線;
+   ⑤VS 對比(.web-vs)合成一塊分割面板,桌機/平板左右、手機上下,VS 圓標在中線;
    ⑥搭配其他服務(.other-svc)半透明格。
    只作用於 body.page-web。案例區(.web-gallery)、負責人卡(.owner)、表單、深色引言塊(.vd-hl)不動。 */
 
@@ -476,8 +478,35 @@ body.page-web .other-svc a:hover{background:var(--panel-hover);transform:none}
   body.page-web .step .chips{margin-top:10px}
 }
 
-/* 手機/平板:單欄條列 */
-@media (max-width:1023.98px){
+/* 平板(641–1023px):兩欄或整列橫排,避免右半邊閒置 */
+@media (min-width:641px) and (max-width:1023.98px){
+  body.page-web section{padding:60px 0}
+  body.page-web .ind-grid{grid-template-columns:1fr 1fr;gap:22px 26px;margin-top:26px}
+  /* 步驟:每步一整列橫排(編號 | 標題+標籤 | 說明),說明欄吃掉剩餘寬度 */
+  body.page-web .steps{grid-template-columns:1fr;gap:12px;margin-top:28px}
+  body.page-web .step{padding:18px 22px;grid-template-columns:44px minmax(170px,.8fr) 1.3fr;grid-template-areas:"no h3 p" "no chips p";gap:6px 18px;align-items:start}
+  body.page-web .step > div:last-child{display:contents}
+  body.page-web .step .no{grid-area:no;font-size:28px}
+  body.page-web .step h3{grid-area:h3;font-size:19px;margin:0}
+  body.page-web .step p{grid-area:p;margin:0}
+  body.page-web .step .chips{grid-area:chips;margin-top:0;align-self:start}
+  /* 內容卡:兩欄,第三張撐滿並改成左右兩欄(標題|清單) */
+  body.page-web .vd-grid3{grid-template-columns:1fr 1fr;margin-top:26px}
+  body.page-web .vd-card{padding:22px 22px 20px}
+  body.page-web .vd-grid3 > .vd-card:nth-child(2n){border-right:0}
+  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child{grid-column:1/-1;border-right:0;border-top:1px solid var(--panel-line);display:grid;grid-template-columns:minmax(150px,.6fr) 1.4fr;grid-template-rows:auto 1fr;column-gap:24px;row-gap:0;align-items:start}
+  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child h3{grid-column:1;margin-bottom:2px}
+  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child .who{grid-column:1;margin-bottom:0}
+  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child ul,body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child .chips{grid-column:2;grid-row:1/span 2;align-self:center;margin-top:0}
+  /* AI 三問維持三欄 */
+  body.page-web .vd-grid3.q3{grid-template-columns:repeat(3,1fr)}
+  body.page-web .vd-grid3.q3 > .vd-card{padding:16px 18px;border-right:1px solid var(--panel-line);border-top:0;grid-column:auto;display:block}
+  body.page-web .vd-grid3.q3 > .vd-card:nth-child(3):last-child{grid-column:auto;border-top:0;border-right:0;display:block}
+  body.page-web .other-svc{grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+}
+
+/* 手機(≤640px):單欄條列 */
+@media (max-width:640px){
   body.page-web section{padding:52px 0}
   body.page-web .ind-grid{grid-template-columns:1fr;gap:0;margin-top:22px}
   body.page-web .ind{padding:14px 0 14px 16px;border-bottom:1px solid var(--panel-line)}

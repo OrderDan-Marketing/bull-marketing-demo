@@ -398,135 +398,192 @@ table.res .pf{display:inline-block;font-size:12px;padding:3px 8px;border-radius:
 
 
 
-/* ══ web.html 密度調整 v3(Dan 2026-09-26)══
-   v1 手機去白卡條列 → v2 同套視覺延伸到桌機 → v3 平板(641–1023px)由單欄改兩欄,避免右半邊閒置。
+
+/* ══ 全站密度調整 v4(Dan 2026-09-26「通過 先這樣套用到全部頁面中」)══
+   v1 web.html 手機去白卡 → v2 桌機 → v3 平板兩欄 → v4 作用範圍放寬到所有頁面(body[class^="page-"]:page-web/ads/crm/visual/video/index),
+   並補「內容卡/步驟數量非 3、5」的補位規則與首頁專用區塊(.svc/.flow/.integ/.plan/.faq)的同套視覺。
    ①淺底段(原 style="background:#fff")改淡紫底深字,與深底段交替;
-   ②「標題+一句」清單(.ind)去白卡:左側色條+編號+粗標+一句;桌機 4 欄、平板 2 欄、手機單欄加分隔線;
-   ③步驟(.step):桌機/平板半透明框+左側色條(桌機 6 欄格 5 步=3+2、平板 2 欄末單數項撐滿);手機單欄條列;
-   ④內容型卡(.vd-grid3,含 AI 三問 .q3)合併成一塊半透明面板:桌機 3 欄直向分隔線、平板 2 欄第三張撐滿(.q3 維持 3 欄)、手機單欄橫向分隔線;
-   ⑤VS 對比(.web-vs)合成一塊分割面板,桌機/平板左右、手機上下,VS 圓標在中線;
-   ⑥搭配其他服務(.other-svc)半透明格。
-   只作用於 body.page-web。案例區(.web-gallery)、負責人卡(.owner)、表單、深色引言塊(.vd-hl)不動。 */
+   ②「標題+一句」清單(.ind、首頁 .integ li)去白卡:左側色條;桌機多欄、平板 2 欄、手機單欄加分隔線;
+   ③步驟(.step、首頁 .flow):半透明框+左側色條;桌機 6 欄格(任意步數自動補齊整列)、平板每步一列橫排、手機單欄條列;
+   ④內容型卡(.vd-grid3,含 AI 三問 .q3):合併成一塊半透明面板,格線用 1px 陰影自動產生(任意張數);孤兒格撐滿整列;
+   ⑤VS 對比(.web-vs):一塊分割面板,桌機/平板左右、手機上下;
+   ⑥搭配其他服務(.other-svc)、首頁服務卡(.svc)、方案卡(.plan,主打 A 案維持白底強調)、FAQ(.faq details):半透明框。
+   不動:案例區(.web-gallery/.pj-grid)、負責人卡(.owner)、表單、深色引言塊(.vd-hl/.quote/.price-bar)、成效表(.tbl-wrap)、Logo 牆(.vd-logos)、首頁痛點卡(.pain-card 原本就半透明)。 */
 
 /* 色彩變數:深底段 / 淺底段 */
-body.page-web section{--tx:#fff;--tx2:#d9cdf5;--tx3:#b9a9dc;--num:#ffb340;--panel:rgba(255,255,255,.06);--panel-hover:rgba(255,255,255,.11);--panel-line:rgba(255,255,255,.16);--panel-bad:rgba(0,0,0,.22)}
-body.page-web section[style*="background:#fff"]{background:linear-gradient(180deg,#f3edfb,#ebe3f7)!important;--tx:#1c1a17;--tx2:#4a4640;--tx3:#6f6488;--num:#c2185b;--panel:rgba(59,21,131,.05);--panel-hover:rgba(59,21,131,.09);--panel-line:rgba(59,21,131,.16);--panel-bad:rgba(59,21,131,.08)}
-body.page-web section[style*="background:#fff"] .h2{color:#2b1360}
-body.page-web section[style*="background:#fff"] .lead{color:#4a4640}
-body.page-web section[style*="background:#fff"] .lead a{color:#5c22b8}
-body.page-web section[style*="background:#fff"] .eyebrow{color:#c2185b}
-body.page-web section[style*="background:#fff"] .eyebrow::before{background:linear-gradient(90deg,#c2185b,#ff5fa2)}
+body[class^="page-"] section{--tx:#fff;--tx2:#d9cdf5;--tx3:#b9a9dc;--num:#ffb340;--panel:rgba(255,255,255,.06);--panel-hover:rgba(255,255,255,.11);--panel-line:rgba(255,255,255,.16);--panel-bad:rgba(0,0,0,.22)}
+body[class^="page-"] section[style*="background:#fff"]{background:linear-gradient(180deg,#f3edfb,#ebe3f7)!important;color:var(--ink);--tx:#1c1a17;--tx2:#4a4640;--tx3:#6f6488;--num:#c2185b;--panel:rgba(59,21,131,.05);--panel-hover:rgba(59,21,131,.09);--panel-line:rgba(59,21,131,.16);--panel-bad:rgba(59,21,131,.08)}
+body[class^="page-"] section[style*="background:#fff"] .h2{color:#2b1360}
+body[class^="page-"] section[style*="background:#fff"] .lead{color:#4a4640}
+body[class^="page-"] section[style*="background:#fff"] .lead a{color:#5c22b8}
+body[class^="page-"] section[style*="background:#fff"] .eyebrow{color:#c2185b}
+body[class^="page-"] section[style*="background:#fff"] .eyebrow::before{background:linear-gradient(90deg,#c2185b,#ff5fa2)}
 
-/* ② 標題+一句清單(痛點/為什麼選/視覺延伸):左側色條,不用白卡 */
-body.page-web .ind-grid{gap:26px 30px;margin-top:32px}
-body.page-web .ind{background:transparent;box-shadow:none;border-radius:0;padding:4px 0 4px 16px;border-left:3px solid var(--num);color:var(--tx)}
-body.page-web .ind:hover{transform:none;box-shadow:none}
-body.page-web .ind small{color:var(--num);font-weight:700}
-body.page-web .ind b{color:var(--tx);font-size:18px;margin:2px 0 6px}
-body.page-web .ind p{color:var(--tx2);font-size:15px;margin-top:0;line-height:1.6}
-body.page-web .ind .chips{margin-top:10px}
-body.page-web .ind .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
+/* ② 標題+一句清單(.ind):左側色條,不用白卡 */
+body[class^="page-"] .ind-grid{gap:26px 30px;margin-top:32px}
+body[class^="page-"] .ind{background:transparent;box-shadow:none;border-radius:0;padding:4px 0 4px 16px;border-left:3px solid var(--num);color:var(--tx)}
+body[class^="page-"] .ind:hover{transform:none;box-shadow:none}
+body[class^="page-"] .ind small{color:var(--num);font-weight:700}
+body[class^="page-"] .ind b{color:var(--tx);font-size:18px;margin:2px 0 6px}
+body[class^="page-"] .ind p{color:var(--tx2);font-size:15px;margin-top:0;line-height:1.6}
+body[class^="page-"] .ind .chips{margin-top:10px}
+body[class^="page-"] .ind .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
 
-/* ③ 步驟(服務流程/立即行動):半透明框+左側色條 */
-body.page-web .step{background:var(--panel);box-shadow:none;border:1px solid var(--panel-line);border-left:3px solid var(--num);border-radius:14px;color:var(--tx)}
-body.page-web .step:hover{border-left-color:var(--num);transform:translateY(-3px);background:var(--panel-hover)}
-body.page-web .step .no{color:var(--num)}
-body.page-web .step h3{color:var(--tx)}
-body.page-web .step p{color:var(--tx2);font-size:15px}
-body.page-web .step .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
+/* ③ 步驟(.step):半透明框+左側色條 */
+body[class^="page-"] .step{background:var(--panel);box-shadow:none;border:1px solid var(--panel-line);border-left:3px solid var(--num);border-radius:14px;color:var(--tx)}
+body[class^="page-"] .step:hover{border-left-color:var(--num);transform:translateY(-3px);background:var(--panel-hover)}
+body[class^="page-"] .step .no{color:var(--num)}
+body[class^="page-"] .step h3{color:var(--tx)}
+body[class^="page-"] .step p{color:var(--tx2);font-size:15px}
+body[class^="page-"] .step .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
 
-/* ④ 內容型卡合併面板(核心服務/已交付作品/AI 三問) */
-body.page-web .vd-grid3{gap:0;margin-top:30px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden}
-body.page-web .vd-card{background:transparent;box-shadow:none;border-radius:0;padding:24px 24px 22px;border-right:1px solid var(--panel-line);color:var(--tx)}
-body.page-web .vd-grid3 > .vd-card:last-child{border-right:0}
-body.page-web .vd-card:hover{transform:none;box-shadow:none}
-body.page-web .vd-card h3{color:var(--tx);font-size:19px}
-body.page-web .vd-card .who{color:var(--tx3)}
-body.page-web .vd-card p,body.page-web .vd-card ul{color:var(--tx2);font-size:15px}
-body.page-web .vd-card li::before{background:var(--num)}
-body.page-web .vd-card a{color:var(--num)}
-body.page-web .vd-card .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
-body.page-web .vd-card .fit{border-top-color:var(--panel-line);color:var(--tx2)}
-body.page-web .vd-card .fit b{color:var(--num)}
+/* ④ 內容型卡合併面板:格線=每張卡右下 1px 陰影,面板 overflow:hidden 自動裁掉最外圈 */
+body[class^="page-"] .vd-grid3{gap:0;margin-top:30px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden}
+body[class^="page-"] .vd-card{background:transparent;box-shadow:1px 1px 0 0 var(--panel-line);border-radius:0;border:0;padding:24px 24px 22px;color:var(--tx)}
+body[class^="page-"] .vd-card:hover{transform:none;box-shadow:1px 1px 0 0 var(--panel-line)}
+body[class^="page-"] .vd-card h3{color:var(--tx);font-size:19px}
+body[class^="page-"] .vd-card .who{color:var(--tx3)}
+body[class^="page-"] .vd-card p,body[class^="page-"] .vd-card ul{color:var(--tx2);font-size:15px}
+body[class^="page-"] .vd-card li::before{background:var(--num)}
+body[class^="page-"] .vd-card a{color:var(--num)}
+body[class^="page-"] .vd-card .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
+body[class^="page-"] .vd-card .fit{border-top-color:var(--panel-line);color:var(--tx2)}
+body[class^="page-"] .vd-card .fit b{color:var(--num)}
+/* 桌機 3 欄的孤兒格:餘 1 撐滿整列、餘 2 各佔一半 */
+body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n+1):last-child{grid-column:1/-1}
+body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n+2):nth-last-child(2),body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n):last-child{grid-column:auto}
+body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n+2):last-child{grid-column:span 2}
 /* AI 三問:一句話卡縮內距、標題前加圓點 */
-body.page-web .q3{margin-top:28px}
-body.page-web .q3 .vd-card{padding:18px 22px}
-body.page-web .q3 .vd-card h3{font-size:18px;margin-bottom:2px;padding-left:14px;position:relative}
-body.page-web .q3 .vd-card h3::before{content:"";position:absolute;left:0;top:.45em;width:6px;height:6px;border-radius:50%;background:var(--num)}
-body.page-web .q3 .vd-card p{margin-top:2px;padding-left:14px}
+body[class^="page-"] .q3{margin-top:28px}
+body[class^="page-"] .q3 .vd-card{padding:18px 22px}
+body[class^="page-"] .q3 .vd-card h3{font-size:18px;margin-bottom:2px;padding-left:14px;position:relative}
+body[class^="page-"] .q3 .vd-card h3::before{content:"";position:absolute;left:0;top:.45em;width:6px;height:6px;border-radius:50%;background:var(--num)}
+body[class^="page-"] .q3 .vd-card p{margin-top:2px;padding-left:14px}
 
-/* ⑤ VS 對比(品牌資產、AI 架站):兩張卡合成一塊分割面板,VS 變成中線上的圓標 */
-body.page-web .web-vs{grid-template-columns:1fr 1fr;gap:0;margin-top:28px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden;position:relative}
-body.page-web .web-vs .vd-card{background:transparent;box-shadow:none;border-radius:0;border:0;padding:24px 26px;color:var(--tx)}
-body.page-web .web-vs .vd-card.bad{background:var(--panel-bad)}
-body.page-web .web-vs > .vd-card:first-child{border-right:1px solid var(--panel-line)}
-body.page-web .web-vs .vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);align-self:auto;font-size:14px;letter-spacing:.1em;padding:6px 14px;border-radius:999px;background:var(--num);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:1}
-body.page-web .web-vs .vd-card.bad li::before{background:var(--tx3)}
+/* ⑤ VS 對比:兩張卡合成一塊分割面板,VS 變成中線上的圓標 */
+body[class^="page-"] .web-vs{grid-template-columns:1fr 1fr;gap:0;margin-top:28px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden;position:relative}
+body[class^="page-"] .web-vs .vd-card{background:transparent;box-shadow:none;border-radius:0;border:0;padding:24px 26px;color:var(--tx);grid-column:auto}
+body[class^="page-"] .web-vs .vd-card:hover{box-shadow:none}
+body[class^="page-"] .web-vs .vd-card.bad{background:var(--panel-bad)}
+body[class^="page-"] .web-vs > .vd-card:first-child{border-right:1px solid var(--panel-line)}
+body[class^="page-"] .web-vs .vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);align-self:auto;font-size:14px;letter-spacing:.1em;padding:6px 14px;border-radius:999px;background:var(--num);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:1}
+body[class^="page-"] .web-vs .vd-card.bad li::before{background:var(--tx3)}
 
 /* ⑥ 搭配其他服務:半透明格 */
-body.page-web .other-svc a{background:var(--panel);border:1px solid var(--panel-line);color:var(--tx);box-shadow:none}
-body.page-web .other-svc a:hover{background:var(--panel-hover);transform:none}
+body[class^="page-"] .other-svc a{background:var(--panel);border:1px solid var(--panel-line);color:var(--tx);box-shadow:none}
+body[class^="page-"] .other-svc a:hover{background:var(--panel-hover);transform:none}
 
-/* 桌機:服務流程 6 欄格(5 步=3+2 兩列;3 步=一列),卡片內距縮 */
+/* ⑦ 首頁專用區塊:同一套視覺語言 */
+body[class^="page-"] .svc{background:var(--panel);box-shadow:none;border:1px solid var(--panel-line);color:var(--tx)}
+body[class^="page-"] .svc:hover{box-shadow:none;transform:translateY(-6px)}
+body[class^="page-"] .svc h3,body[class^="page-"] .svc .who{color:var(--tx)}
+body[class^="page-"] .svc li{color:var(--tx2)}
+body[class^="page-"] .svc li::before{color:var(--num)}
+body[class^="page-"] .svc .tag{background:transparent;color:var(--num);border-color:var(--panel-line)}
+body[class^="page-"] .svc .more-link{color:var(--num)}
+body[class^="page-"] .svc .ic{background:linear-gradient(135deg,#5c22b8,#ff5fa2)}
+body[class^="page-"] .svc:hover .ic{background:#fff}
+body[class^="page-"] .flow{background:var(--panel);box-shadow:none;border:1px solid var(--panel-line)}
+body[class^="page-"] .flow h4{color:var(--tx)}
+body[class^="page-"] .flow p{color:var(--tx2)}
+body[class^="page-"] .flow p a{color:var(--num)}
+body[class^="page-"] .integ li{background:transparent;box-shadow:none;border-radius:0;border-left:3px solid var(--num);padding:6px 0 6px 16px;color:var(--tx)}
+body[class^="page-"] .integ li b{color:var(--tx)}
+body[class^="page-"] .integ li p{color:var(--tx2)}
+body[class^="page-"] .integ li p a{color:#5c22b8;border-bottom:1px solid currentColor}
+body[class^="page-"] .integ .badge{background:var(--panel);border:1px solid var(--panel-line);color:var(--num)}
+body[class^="page-"] .plan{background:var(--panel);box-shadow:none;border:1px solid var(--panel-line);border-top:4px solid var(--panel-line);color:var(--tx)}
+body[class^="page-"] .plan:hover{box-shadow:none}
+body[class^="page-"] .plan h3{color:var(--tx)}
+body[class^="page-"] .plan .who{color:var(--tx3)}
+body[class^="page-"] .plan ul{color:var(--tx2)}
+body[class^="page-"] .plan li::before{color:var(--num)}
+body[class^="page-"] .plan .fit{border-top-color:var(--panel-line);color:var(--tx2)}
+body[class^="page-"] .plan .fit b{color:var(--num)}
+body[class^="page-"] .plan.hot{background:linear-gradient(180deg,#fff7fb,#fff);border-color:#fff;border-top:4px solid var(--pink);box-shadow:var(--shadow2);color:var(--ink)}
+body[class^="page-"] .plan.hot:hover{box-shadow:var(--shadow2)}
+body[class^="page-"] .plan.hot h3{color:var(--ink)}
+body[class^="page-"] .plan.hot .who{color:var(--muted)}
+body[class^="page-"] .plan.hot ul{color:var(--ink2)}
+body[class^="page-"] .plan.hot li::before{color:var(--pink)}
+body[class^="page-"] .plan.hot .fit{border-top-color:var(--line);color:var(--ink2)}
+body[class^="page-"] .plan.hot .fit b{color:var(--pink)}
+body[class^="page-"] .faq details{background:var(--panel);box-shadow:none;border:1px solid var(--panel-line);color:var(--tx)}
+body[class^="page-"] .faq summary{color:var(--tx)}
+body[class^="page-"] .faq details p{color:var(--tx2)}
+
+/* 桌機:步驟 6 欄格(任意步數:餘 1 → 末 4 步各佔一半;餘 2 → 末 2 步各佔一半) */
 @media (min-width:1024px){
-  body.page-web section{padding:84px 0}
-  body.page-web .steps{grid-template-columns:repeat(6,1fr);gap:18px;margin-top:36px}
-  body.page-web .step{grid-column:span 2;padding:22px 22px 20px;grid-template-columns:44px 1fr;gap:14px}
-  body.page-web .steps .step:nth-child(4):nth-last-child(2),body.page-web .steps .step:nth-child(5):last-child{grid-column:span 3}
-  body.page-web .step .no{font-size:30px}
-  body.page-web .step h3{font-size:19px;margin-bottom:6px}
-  body.page-web .step .chips{margin-top:10px}
+  body[class^="page-"] section{padding:84px 0}
+  body[class^="page-"] .steps{grid-template-columns:repeat(6,1fr);gap:18px;margin-top:36px}
+  body[class^="page-"] .step{grid-column:span 2;padding:22px 22px 20px;grid-template-columns:44px 1fr;gap:14px}
+  body[class^="page-"] .steps .step:nth-child(3n+1):nth-last-child(4),body[class^="page-"] .steps .step:nth-child(3n+1):nth-last-child(4) ~ .step,body[class^="page-"] .steps .step:nth-child(3n+1):nth-last-child(2),body[class^="page-"] .steps .step:nth-child(3n+1):nth-last-child(2) ~ .step{grid-column:span 3}
+  body[class^="page-"] .step .no{font-size:30px}
+  body[class^="page-"] .step h3{font-size:19px;margin-bottom:6px}
+  body[class^="page-"] .step .chips{margin-top:10px}
 }
 
 /* 平板(641–1023px):兩欄或整列橫排,避免右半邊閒置 */
 @media (min-width:641px) and (max-width:1023.98px){
-  body.page-web section{padding:60px 0}
-  body.page-web .ind-grid{grid-template-columns:1fr 1fr;gap:22px 26px;margin-top:26px}
-  /* 步驟:每步一整列橫排(編號 | 標題+標籤 | 說明),說明欄吃掉剩餘寬度 */
-  body.page-web .steps{grid-template-columns:1fr;gap:12px;margin-top:28px}
-  body.page-web .step{padding:18px 22px;grid-template-columns:44px minmax(170px,.8fr) 1.3fr;grid-template-areas:"no h3 p" "no chips p";gap:6px 18px;align-items:start}
-  body.page-web .step > div:last-child{display:contents}
-  body.page-web .step .no{grid-area:no;font-size:28px}
-  body.page-web .step h3{grid-area:h3;font-size:19px;margin:0}
-  body.page-web .step p{grid-area:p;margin:0}
-  body.page-web .step .chips{grid-area:chips;margin-top:0;align-self:start}
-  /* 內容卡:兩欄,第三張撐滿並改成左右兩欄(標題|清單) */
-  body.page-web .vd-grid3{grid-template-columns:1fr 1fr;margin-top:26px}
-  body.page-web .vd-card{padding:22px 22px 20px}
-  body.page-web .vd-grid3 > .vd-card:nth-child(2n){border-right:0}
-  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child{grid-column:1/-1;border-right:0;border-top:1px solid var(--panel-line);display:grid;grid-template-columns:minmax(150px,.6fr) 1.4fr;grid-template-rows:auto 1fr;column-gap:24px;row-gap:0;align-items:start}
-  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child h3{grid-column:1;margin-bottom:2px}
-  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child .who{grid-column:1;margin-bottom:0}
-  body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child ul,body.page-web .vd-grid3 > .vd-card:nth-child(3):last-child .chips{grid-column:2;grid-row:1/span 2;align-self:center;margin-top:0}
+  body[class^="page-"] section{padding:60px 0}
+  body[class^="page-"] .ind-grid{grid-template-columns:1fr 1fr;gap:22px 26px;margin-top:26px}
+  /* 步驟:每步一整列橫排(編號 | 標題+標籤 | 說明) */
+  body[class^="page-"] .steps{grid-template-columns:1fr;gap:12px;margin-top:28px}
+  body[class^="page-"] .step{padding:18px 22px;grid-template-columns:44px minmax(170px,.8fr) 1.3fr;grid-template-areas:"no h3 p" "no chips p";gap:6px 18px;align-items:start}
+  body[class^="page-"] .step > div:last-child{display:contents}
+  body[class^="page-"] .step .no{grid-area:no;font-size:28px}
+  body[class^="page-"] .step h3{grid-area:h3;font-size:19px;margin:0}
+  body[class^="page-"] .step p{grid-area:p;margin:0}
+  body[class^="page-"] .step .chips{grid-area:chips;margin-top:0;align-self:start}
+  /* 內容卡:兩欄;孤兒格撐滿並改成左右兩欄(標題|清單) */
+  body[class^="page-"] .vd-grid3{grid-template-columns:1fr 1fr;margin-top:26px}
+  body[class^="page-"] .vd-card{padding:22px 22px 20px}
+  body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n+1):last-child,body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n+2):last-child{grid-column:auto}
+  body[class^="page-"] .vd-grid3 > .vd-card:nth-child(2n+1):last-child{grid-column:1/-1}
+  body[class^="page-"] .vd-grid3 > .vd-card:nth-child(2n+1):last-child:has(ul),body[class^="page-"] .vd-grid3 > .vd-card:nth-child(2n+1):last-child:has(.chips){display:grid;grid-template-columns:minmax(150px,.6fr) 1.4fr;grid-template-rows:auto 1fr;column-gap:24px;row-gap:0;align-items:start}
+  body[class^="page-"] .vd-grid3 > .vd-card:nth-child(2n+1):last-child h3{grid-column:1;margin-bottom:2px}
+  body[class^="page-"] .vd-grid3 > .vd-card:nth-child(2n+1):last-child .who{grid-column:1;margin-bottom:0}
+  body[class^="page-"] .vd-grid3 > .vd-card:nth-child(2n+1):last-child ul,body[class^="page-"] .vd-grid3 > .vd-card:nth-child(2n+1):last-child .chips{grid-column:2;grid-row:1/span 2;align-self:center;margin-top:0}
   /* AI 三問維持三欄 */
-  body.page-web .vd-grid3.q3{grid-template-columns:repeat(3,1fr)}
-  body.page-web .vd-grid3.q3 > .vd-card{padding:16px 18px;border-right:1px solid var(--panel-line);border-top:0;grid-column:auto;display:block}
-  body.page-web .vd-grid3.q3 > .vd-card:nth-child(3):last-child{grid-column:auto;border-top:0;border-right:0;display:block}
-  body.page-web .other-svc{grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  body[class^="page-"] .vd-grid3.q3{grid-template-columns:repeat(3,1fr)}
+  body[class^="page-"] .vd-grid3.q3 > .vd-card,body[class^="page-"] .vd-grid3.q3 > .vd-card:nth-child(2n+1):last-child{padding:16px 18px;grid-column:auto;display:block}
+  body[class^="page-"] .other-svc{grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  body[class^="page-"] .flow{grid-template-columns:repeat(5,1fr);padding:26px 18px}
 }
 
 /* 手機(≤640px):單欄條列 */
 @media (max-width:640px){
-  body.page-web section{padding:52px 0}
-  body.page-web .ind-grid{grid-template-columns:1fr;gap:0;margin-top:22px}
-  body.page-web .ind{padding:14px 0 14px 16px;border-bottom:1px solid var(--panel-line)}
-  body.page-web .ind:last-child{border-bottom:0}
-  body.page-web .ind b{font-size:17px;margin:2px 0 4px}
-  body.page-web .ind .chips{margin-top:8px}
-  body.page-web .steps{gap:0;margin-top:22px}
-  body.page-web .step{background:transparent;border:0;border-left:3px solid var(--num);border-bottom:1px solid var(--panel-line);border-radius:0;padding:14px 0 16px 16px;grid-template-columns:40px 1fr;gap:12px}
-  body.page-web .step:last-child{border-bottom:0}
-  body.page-web .step:hover{transform:none;background:transparent}
-  body.page-web .step .no{font-size:26px;padding-top:2px}
-  body.page-web .step h3{font-size:18px;margin-bottom:4px}
-  body.page-web .step .chips{margin-top:8px}
-  body.page-web .vd-grid3{grid-template-columns:1fr;margin-top:22px}
-  body.page-web .vd-card{padding:20px 20px 18px;border-right:0;border-bottom:1px solid var(--panel-line)}
-  body.page-web .vd-grid3 > .vd-card:last-child{border-bottom:0}
-  body.page-web .q3 .vd-card{padding:16px 20px}
-  body.page-web .web-vs{grid-template-columns:1fr}
-  body.page-web .web-vs > .vd-card:first-child{border-right:0;border-bottom:1px solid var(--panel-line)}
-  body.page-web .web-vs .vs{position:relative;left:auto;top:auto;transform:none;justify-self:center;margin:-15px 0}
-  body.page-web .other-svc{grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-  body.page-web .other-svc a{padding:14px 16px;font-size:15px}
+  body[class^="page-"] section{padding:52px 0}
+  body[class^="page-"] .ind-grid{grid-template-columns:1fr;gap:0;margin-top:22px}
+  body[class^="page-"] .ind{padding:14px 0 14px 16px;border-bottom:1px solid var(--panel-line)}
+  body[class^="page-"] .ind:last-child{border-bottom:0}
+  body[class^="page-"] .ind b{font-size:17px;margin:2px 0 4px}
+  body[class^="page-"] .ind .chips{margin-top:8px}
+  body[class^="page-"] .steps{gap:0;margin-top:22px}
+  body[class^="page-"] .step{background:transparent;border:0;border-left:3px solid var(--num);border-bottom:1px solid var(--panel-line);border-radius:0;padding:14px 0 16px 16px;grid-template-columns:40px 1fr;gap:12px}
+  body[class^="page-"] .step:last-child{border-bottom:0}
+  body[class^="page-"] .step:hover{transform:none;background:transparent}
+  body[class^="page-"] .step .no{font-size:26px;padding-top:2px}
+  body[class^="page-"] .step h3{font-size:18px;margin-bottom:4px}
+  body[class^="page-"] .step .chips{margin-top:8px}
+  body[class^="page-"] .vd-grid3{grid-template-columns:1fr;margin-top:22px}
+  body[class^="page-"] .vd-card{padding:20px 20px 18px}
+  body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n+1):last-child,body[class^="page-"] .vd-grid3 > .vd-card:nth-child(3n+2):last-child{grid-column:auto}
+  body[class^="page-"] .q3 .vd-card{padding:16px 20px}
+  body[class^="page-"] .web-vs{grid-template-columns:1fr}
+  body[class^="page-"] .web-vs > .vd-card:first-child{border-right:0;border-bottom:1px solid var(--panel-line)}
+  body[class^="page-"] .web-vs .vs{position:relative;left:auto;top:auto;transform:none;justify-self:center;margin:-15px 0}
+  body[class^="page-"] .other-svc{grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+  body[class^="page-"] .other-svc a{padding:14px 16px;font-size:15px}
+  body[class^="page-"] .integ li{padding:12px 0 12px 16px;gap:12px}
+  body[class^="page-"] .flow{padding:22px 18px}
+}
+
+/* v4.1 補丁(2026-09-26 全站 6 頁×3 寬量測後):淺底段 .vd-plans-note 淺字改深;平板方案卡(.plans)由單欄 640px 改三欄,消除右側 58–69% 留白 */
+body[class^="page-"] section[style*="background:#fff"] .vd-plans-note{color:#6f6488}
+@media (min-width:641px) and (max-width:1023.98px){
+  body[class^="page-"] .plans{grid-template-columns:repeat(3,1fr);max-width:none;gap:14px}
+  body[class^="page-"] .plan{padding:26px 18px 22px}
+  body[class^="page-"] .plan h3{font-size:20px}
+  body[class^="page-"] .plan .lbl{left:18px}
 }

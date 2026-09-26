@@ -396,48 +396,74 @@ table.res .pf{display:inline-block;font-size:12px;padding:3px 8px;border-radius:
 @media (max-width:1024px){.web-gallery{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.web-gallery{grid-template-columns:1fr}.web-vs{grid-template-columns:1fr}.web-vs .vs{justify-self:center}}
 
-/* ══ web.html 密度調整(Dan 2026-09-26)══
-   問題:手機/平板單欄後,每段 3~5 張全寬白卡直疊,一句話一張卡,白卡佔頁高 65%,視覺疲乏;
-         桌機「服務流程」5 張全寬卡與「AI 架站」三張一句話卡+VS 兩大白卡留白過多。
-   做法:只作用於 body.page-web(先改這一頁給 Dan 比對)。
-   ①淺底段(原 style="background:#fff")改淡紫底深字,打破深底+白卡單一節奏;
-   ②<1024px:標題+一句型清單(.ind)/步驟(.step)去白卡改條列;內容型卡(.vd-card)合併成一塊半透明面板;
-   ③≥1024px:.steps 改 6 欄格(5 步=3+2 兩列、3 步=一列),卡片內距縮;
-   ④AI 架站三問(.q3)改一條三格半透明帶;VS 對比(.web-vs)兩張白卡合成一塊分割面板(全尺寸)。 */
+
+/* ══ web.html 密度調整 v2(Dan 2026-09-26:手機版視覺核可後,同一套去白卡視覺套到桌機)══
+   ①淺底段(原 style="background:#fff")改淡紫底深字,與深底段交替;
+   ②「標題+一句」清單(.ind)全尺寸去白卡:左側色條+編號+粗標+一句;桌機 4 欄、手機/平板單欄加分隔線;
+   ③步驟(.step)桌機改半透明框+左側色條、6 欄格(5 步=3+2、3 步=一列);手機/平板單欄條列;
+   ④內容型卡(.vd-grid3,含 AI 三問 .q3)全尺寸合併成一塊半透明面板:桌機直向分隔線、手機橫向分隔線;
+   ⑤VS 對比(.web-vs)合成一塊分割面板,VS 圓標在中線;
+   ⑥搭配其他服務(.other-svc)半透明格。
+   只作用於 body.page-web。案例區(.web-gallery)、負責人卡(.owner)、表單、深色引言塊(.vd-hl)不動。 */
 
 /* 色彩變數:深底段 / 淺底段 */
-body.page-web section{--tx:#fff;--tx2:#d9cdf5;--tx3:#b9a9dc;--num:#ffb340;--panel:rgba(255,255,255,.06);--panel-line:rgba(255,255,255,.16);--panel-bad:rgba(0,0,0,.22)}
-body.page-web section[style*="background:#fff"]{background:linear-gradient(180deg,#f3edfb,#ebe3f7)!important;--tx:#1c1a17;--tx2:#4a4640;--tx3:#6f6488;--num:#c2185b;--panel:rgba(59,21,131,.05);--panel-line:rgba(59,21,131,.16);--panel-bad:rgba(59,21,131,.08)}
+body.page-web section{--tx:#fff;--tx2:#d9cdf5;--tx3:#b9a9dc;--num:#ffb340;--panel:rgba(255,255,255,.06);--panel-hover:rgba(255,255,255,.11);--panel-line:rgba(255,255,255,.16);--panel-bad:rgba(0,0,0,.22)}
+body.page-web section[style*="background:#fff"]{background:linear-gradient(180deg,#f3edfb,#ebe3f7)!important;--tx:#1c1a17;--tx2:#4a4640;--tx3:#6f6488;--num:#c2185b;--panel:rgba(59,21,131,.05);--panel-hover:rgba(59,21,131,.09);--panel-line:rgba(59,21,131,.16);--panel-bad:rgba(59,21,131,.08)}
 body.page-web section[style*="background:#fff"] .h2{color:#2b1360}
 body.page-web section[style*="background:#fff"] .lead{color:#4a4640}
 body.page-web section[style*="background:#fff"] .lead a{color:#5c22b8}
 body.page-web section[style*="background:#fff"] .eyebrow{color:#c2185b}
 body.page-web section[style*="background:#fff"] .eyebrow::before{background:linear-gradient(90deg,#c2185b,#ff5fa2)}
 
-/* AI 架站三問:一句話卡不用白卡,改成一條三格半透明帶 */
-body.page-web .vd-grid3.q3{gap:0;margin-top:28px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden}
-body.page-web .q3 .vd-card{background:transparent;box-shadow:none;border-radius:0;padding:18px 22px;color:var(--tx);border-right:1px solid var(--panel-line)}
-body.page-web .q3 .vd-card:last-child{border-right:0}
-body.page-web .q3 .vd-card:hover{transform:none;box-shadow:none}
-body.page-web .q3 .vd-card h3{color:var(--tx);font-size:18px;margin-bottom:2px;padding-left:14px;position:relative}
-body.page-web .q3 .vd-card h3::before{content:"";position:absolute;left:0;top:.45em;width:6px;height:6px;border-radius:50%;background:var(--num)}
-body.page-web .q3 .vd-card p{color:var(--tx2);font-size:15px;margin-top:2px;padding-left:14px}
+/* ② 標題+一句清單(痛點/為什麼選/視覺延伸):左側色條,不用白卡 */
+body.page-web .ind-grid{gap:26px 30px;margin-top:32px}
+body.page-web .ind{background:transparent;box-shadow:none;border-radius:0;padding:4px 0 4px 16px;border-left:3px solid var(--num);color:var(--tx)}
+body.page-web .ind:hover{transform:none;box-shadow:none}
+body.page-web .ind small{color:var(--num);font-weight:700}
+body.page-web .ind b{color:var(--tx);font-size:18px;margin:2px 0 6px}
+body.page-web .ind p{color:var(--tx2);font-size:15px;margin-top:0;line-height:1.6}
+body.page-web .ind .chips{margin-top:10px}
+body.page-web .ind .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
 
-/* VS 對比(品牌資產、AI 架站):兩張白卡合成一塊分割面板,VS 變成中線上的圓標 */
+/* ③ 步驟(服務流程/立即行動):半透明框+左側色條 */
+body.page-web .step{background:var(--panel);box-shadow:none;border:1px solid var(--panel-line);border-left:3px solid var(--num);border-radius:14px;color:var(--tx)}
+body.page-web .step:hover{border-left-color:var(--num);transform:translateY(-3px);background:var(--panel-hover)}
+body.page-web .step .no{color:var(--num)}
+body.page-web .step h3{color:var(--tx)}
+body.page-web .step p{color:var(--tx2);font-size:15px}
+body.page-web .step .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
+
+/* ④ 內容型卡合併面板(核心服務/已交付作品/AI 三問) */
+body.page-web .vd-grid3{gap:0;margin-top:30px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden}
+body.page-web .vd-card{background:transparent;box-shadow:none;border-radius:0;padding:24px 24px 22px;border-right:1px solid var(--panel-line);color:var(--tx)}
+body.page-web .vd-grid3 > .vd-card:last-child{border-right:0}
+body.page-web .vd-card:hover{transform:none;box-shadow:none}
+body.page-web .vd-card h3{color:var(--tx);font-size:19px}
+body.page-web .vd-card .who{color:var(--tx3)}
+body.page-web .vd-card p,body.page-web .vd-card ul{color:var(--tx2);font-size:15px}
+body.page-web .vd-card li::before{background:var(--num)}
+body.page-web .vd-card a{color:var(--num)}
+body.page-web .vd-card .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
+body.page-web .vd-card .fit{border-top-color:var(--panel-line);color:var(--tx2)}
+body.page-web .vd-card .fit b{color:var(--num)}
+/* AI 三問:一句話卡縮內距、標題前加圓點 */
+body.page-web .q3{margin-top:28px}
+body.page-web .q3 .vd-card{padding:18px 22px}
+body.page-web .q3 .vd-card h3{font-size:18px;margin-bottom:2px;padding-left:14px;position:relative}
+body.page-web .q3 .vd-card h3::before{content:"";position:absolute;left:0;top:.45em;width:6px;height:6px;border-radius:50%;background:var(--num)}
+body.page-web .q3 .vd-card p{margin-top:2px;padding-left:14px}
+
+/* ⑤ VS 對比(品牌資產、AI 架站):兩張卡合成一塊分割面板,VS 變成中線上的圓標 */
 body.page-web .web-vs{grid-template-columns:1fr 1fr;gap:0;margin-top:28px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden;position:relative}
 body.page-web .web-vs .vd-card{background:transparent;box-shadow:none;border-radius:0;border:0;padding:24px 26px;color:var(--tx)}
-body.page-web .web-vs .vd-card:hover{transform:none;box-shadow:none}
 body.page-web .web-vs .vd-card.bad{background:var(--panel-bad)}
 body.page-web .web-vs > .vd-card:first-child{border-right:1px solid var(--panel-line)}
 body.page-web .web-vs .vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);align-self:auto;font-size:14px;letter-spacing:.1em;padding:6px 14px;border-radius:999px;background:var(--num);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:1}
-body.page-web .web-vs .vd-card h3{color:var(--tx)}
-body.page-web .web-vs .vd-card .who{color:var(--tx3)}
-body.page-web .web-vs .vd-card ul,body.page-web .web-vs .vd-card p{color:var(--tx2)}
-body.page-web .web-vs .vd-card li::before{background:var(--num)}
 body.page-web .web-vs .vd-card.bad li::before{background:var(--tx3)}
-body.page-web .web-vs .vd-card .fit{border-top-color:var(--panel-line);color:var(--tx2)}
-body.page-web .web-vs .vd-card .fit b{color:var(--num)}
-body.page-web .web-vs .vd-card a{color:var(--num)}
+
+/* ⑥ 搭配其他服務:半透明格 */
+body.page-web .other-svc a{background:var(--panel);border:1px solid var(--panel-line);color:var(--tx);box-shadow:none}
+body.page-web .other-svc a:hover{background:var(--panel-hover);transform:none}
 
 /* 桌機:服務流程 6 欄格(5 步=3+2 兩列;3 步=一列),卡片內距縮 */
 @media (min-width:1024px){
@@ -445,57 +471,33 @@ body.page-web .web-vs .vd-card a{color:var(--num)}
   body.page-web .steps{grid-template-columns:repeat(6,1fr);gap:18px;margin-top:36px}
   body.page-web .step{grid-column:span 2;padding:22px 22px 20px;grid-template-columns:44px 1fr;gap:14px}
   body.page-web .steps .step:nth-child(4):nth-last-child(2),body.page-web .steps .step:nth-child(5):last-child{grid-column:span 3}
-  body.page-web .step:hover{transform:translateY(-3px)}
   body.page-web .step .no{font-size:30px}
   body.page-web .step h3{font-size:19px;margin-bottom:6px}
-  body.page-web .step p{font-size:15px}
   body.page-web .step .chips{margin-top:10px}
 }
 
-/* 手機/平板:去白卡 */
+/* 手機/平板:單欄條列 */
 @media (max-width:1023.98px){
   body.page-web section{padding:52px 0}
-  /* 標題+一句型清單(痛點/為什麼選/視覺延伸):條列 */
   body.page-web .ind-grid{grid-template-columns:1fr;gap:0;margin-top:22px}
-  body.page-web .ind{background:transparent;box-shadow:none;border-radius:0;padding:14px 0 14px 16px;border-left:3px solid var(--num);border-bottom:1px solid var(--panel-line);color:var(--tx)}
+  body.page-web .ind{padding:14px 0 14px 16px;border-bottom:1px solid var(--panel-line)}
   body.page-web .ind:last-child{border-bottom:0}
-  body.page-web .ind:hover{transform:none;box-shadow:none}
-  body.page-web .ind small{color:var(--num);font-weight:700}
-  body.page-web .ind b{color:var(--tx);font-size:17px;margin:2px 0 4px}
-  body.page-web .ind p{color:var(--tx2);font-size:15px;margin-top:0;line-height:1.55}
+  body.page-web .ind b{font-size:17px;margin:2px 0 4px}
   body.page-web .ind .chips{margin-top:8px}
-  body.page-web .ind .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
-  /* 步驟(服務流程/立即行動):條列 */
   body.page-web .steps{gap:0;margin-top:22px}
-  body.page-web .step{background:transparent;box-shadow:none;border-radius:0;border-left:3px solid var(--num);padding:14px 0 16px 16px;grid-template-columns:40px 1fr;gap:12px;border-bottom:1px solid var(--panel-line);color:var(--tx)}
+  body.page-web .step{background:transparent;border:0;border-left:3px solid var(--num);border-bottom:1px solid var(--panel-line);border-radius:0;padding:14px 0 16px 16px;grid-template-columns:40px 1fr;gap:12px}
   body.page-web .step:last-child{border-bottom:0}
-  body.page-web .step:hover{transform:none;border-left-color:var(--num)}
-  body.page-web .step .no{font-size:26px;color:var(--num);padding-top:2px}
-  body.page-web .step h3{color:var(--tx);font-size:18px;margin-bottom:4px}
-  body.page-web .step p{color:var(--tx2);font-size:15px}
+  body.page-web .step:hover{transform:none;background:transparent}
+  body.page-web .step .no{font-size:26px;padding-top:2px}
+  body.page-web .step h3{font-size:18px;margin-bottom:4px}
   body.page-web .step .chips{margin-top:8px}
-  body.page-web .step .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
-  /* 內容型卡(核心服務三卡/已交付作品三卡):合併成一塊半透明面板,卡與卡用分隔線 */
-  body.page-web .vd-grid3{grid-template-columns:1fr;gap:0;margin-top:22px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;overflow:hidden}
-  body.page-web .vd-card{background:transparent;box-shadow:none;border-radius:0;padding:20px 20px 18px;border-bottom:1px solid var(--panel-line);color:var(--tx)}
-  body.page-web .vd-card:last-child{border-bottom:0}
-  body.page-web .vd-card:hover{transform:none;box-shadow:none}
-  body.page-web .vd-card h3{color:var(--tx);font-size:19px}
-  body.page-web .vd-card .who{color:var(--tx3)}
-  body.page-web .vd-card p,body.page-web .vd-card ul{color:var(--tx2);font-size:15px}
-  body.page-web .vd-card a{color:var(--num)}
-  body.page-web .vd-card .chips span{background:var(--panel);color:var(--tx2);border:1px solid var(--panel-line)}
-  body.page-web .vd-card .fit{border-top-color:var(--panel-line);color:var(--tx2)}
-  body.page-web .vd-card .fit b{color:var(--num)}
-  /* AI 三問帶:直排 */
-  body.page-web .q3 .vd-card{border-right:0;border-bottom:1px solid var(--panel-line)}
-  body.page-web .q3 .vd-card:last-child{border-bottom:0}
-  /* VS 面板:上下疊,VS 圓標坐在分隔線上 */
+  body.page-web .vd-grid3{grid-template-columns:1fr;margin-top:22px}
+  body.page-web .vd-card{padding:20px 20px 18px;border-right:0;border-bottom:1px solid var(--panel-line)}
+  body.page-web .vd-grid3 > .vd-card:last-child{border-bottom:0}
+  body.page-web .q3 .vd-card{padding:16px 20px}
   body.page-web .web-vs{grid-template-columns:1fr}
   body.page-web .web-vs > .vd-card:first-child{border-right:0;border-bottom:1px solid var(--panel-line)}
   body.page-web .web-vs .vs{position:relative;left:auto;top:auto;transform:none;justify-self:center;margin:-15px 0}
-  /* 搭配其他服務:2×2 半透明格 */
   body.page-web .other-svc{grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-  body.page-web .other-svc a{background:var(--panel);border:1px solid var(--panel-line);color:var(--tx);box-shadow:none;padding:14px 16px;font-size:15px}
-  body.page-web .other-svc a:hover{background:var(--panel-line);transform:none}
+  body.page-web .other-svc a{padding:14px 16px;font-size:15px}
 }
